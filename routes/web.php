@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', 'GameController@index')->name('game');
+Route::get('/', 'GameController@play')->name('game');
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/settings', 'AdminController@index')->name('admin');
