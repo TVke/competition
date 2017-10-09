@@ -31,10 +31,9 @@ header {
     width: 100%;
     border-radius: 50% 50% 0 0; }
 
-h1::before {
-  content: "";
+h1 {
   display: block;
-  background: url("/img/logo.svg"); }
+  background: url("/img/logo.svg") no-repeat; }
 
 .box {
   display: block;

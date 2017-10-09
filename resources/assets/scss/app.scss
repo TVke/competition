@@ -23,12 +23,8 @@ header{
 }
 
 h1{
-	&::before{
-		content: "";
-		display: block;
-		background: url("/img/logo.svg");
-
-	}
+	display: block;
+	background: url("/img/logo.svg") no-repeat;
 }
 
 .login-box{
