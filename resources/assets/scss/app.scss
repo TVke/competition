@@ -6,5 +6,40 @@
 }
 
 body{
-	
+	background: $brand-primary-contrast;
+	font-family: $body-font;
+}
+header{
+	background: $brand-primary;
+
+	&::after{
+		content: "";
+		display: block;
+		height: 20px;
+		background: $brand-primary-contrast;
+		width: 100%;
+		border-radius: 50% 50% 0 0;
+	}
+}
+
+h1{
+	&::before{
+		content: "";
+		display: block;
+		background: url("/img/logo.svg");
+
+	}
+}
+
+.login-box{
+
+}
+.button{
+
+}
+
+.box{
+	display: block;
+	width: 200px;
+	height: 200px;
 }

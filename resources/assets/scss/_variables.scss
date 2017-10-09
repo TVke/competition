@@ -1,8 +1,13 @@
-
+@import "fonts";
+@import "colors";
 // fonts
+$title-font: "mm-text-bold",sans-serif;
+$action-font: "mm-headline",sans-serif;
+$body-font: "mm-text-regular",sans-serif;
 
+// colors - brand
+$brand-primary: #df0000;
+$brand-primary-contrast: $neutral-0;
 
-// colors
-
-
-
+$brand-secondary: $neutral-0;
+$brand-secondary-contrast: $neutral-10;
