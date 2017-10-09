@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ app()->getLocale() }}">
 <head>
 	<meta charset="UTF-8">
-	<title>Wedstrijd</title>
+	<title>Win een iPhone X</title>
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 </head>
 <body>
 <header>
-	<h1>MediaMarkt</h1>
+	<h1 class="logo var-center">MediaMarkt</h1>
 	<section>
 		@guest
-			<a href="{{ route('login') }}">Login</a>
+			<a class="login-box button var-header" href="{{ route('login') }}">Login</a>
 		@else
 			<form action="{{ route('logout') }}" method="POST">
 				{{ csrf_field() }}
-				<input type="submit" value="logout">
+				<input class="login-box button var-header" type="submit" value="Logout">
 			</form>
 		@endguest
 	</section>

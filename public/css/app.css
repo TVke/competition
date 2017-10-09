@@ -22,18 +22,56 @@ body {
   font-family: "mm-text-regular", sans-serif; }
 
 header {
-  background: #df0000; }
+  background: #df0000;
+  display: block;
+  padding: 5px 5px 25px;
+  position: relative;
+  z-index: -2; }
   header::after {
     content: "";
     display: block;
-    height: 20px;
-    background: white;
+    height: 40px;
     width: 100%;
+    background: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: -1;
     border-radius: 50% 50% 0 0; }
 
-h1 {
+.logo {
+  color: transparent;
   display: block;
-  background: url("/img/logo.svg") no-repeat; }
+  background: url("/img/logo.svg") no-repeat center;
+  width: 370px;
+  height: 50px; }
+  .logo.var-center {
+    margin: 5px auto; }
+
+.login-box {
+  position: absolute;
+  top: 0;
+  right: 0; }
+
+.button {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 10px;
+  border: 1px solid #cccccc;
+  background: white;
+  color: black;
+  border-radius: 3px;
+  text-decoration: none;
+  font-family: "mm-text-regular", sans-serif;
+  font-size: 1em; }
+  .button.var-header {
+    margin-right: 20px;
+    margin-top: 20px; }
+  .button.var-center {
+    margin: 0 auto;
+    display: block;
+    width: 200px;
+    text-align: center; }
 
 .box {
   display: block;

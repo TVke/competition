@@ -9,29 +9,69 @@ body{
 	background: $brand-primary-contrast;
 	font-family: $body-font;
 }
+
 header{
+	$bending-height: 40px; // header bottom bend height
+
 	background: $brand-primary;
+	display: block;
+	padding: 5px 5px ( $bending-height/2 + 5px);
+	position: relative;
+	z-index: -2;
 
 	&::after{
 		content: "";
 		display: block;
-		height: 20px;
-		background: $brand-primary-contrast;
+		height: $bending-height;
 		width: 100%;
+		background: $brand-primary-contrast;
+		position: absolute;
+		left:0;
+		right: 0;
+		z-index: -1;
 		border-radius: 50% 50% 0 0;
 	}
 }
 
-h1{
+.logo{
+	color: transparent;
 	display: block;
-	background: url("/img/logo.svg") no-repeat;
+	background: url("/img/logo.svg") no-repeat center;
+	width: 370px;
+	height: 50px;
+
+	&.var-center{
+		margin: 5px auto
+	}
 }
 
 .login-box{
-
+	position: absolute;
+	top:0;
+	right: 0;
 }
 .button{
+	display: inline-block;
+	margin: 5px;
+	padding:5px 10px;
+	border: 1px solid $neutral-2;
+	background: $neutral-0;
+	color: $neutral-10;
+	border-radius: 3px;
+	text-decoration: none;
+	font-family: $body-font;
+	font-size: 1em;
 
+	&.var-header{
+		margin-right: 20px;
+		margin-top: 20px;
+	}
+	&.var-center{
+		margin: 0 auto;
+		display: block;
+		width: 200px;
+		text-align: center;
+	}
 }
 
 .box{
