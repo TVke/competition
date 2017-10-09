@@ -24,7 +24,7 @@ body {
 header {
   background: #df0000;
   display: block;
-  padding: 5px 5px 25px;
+  padding: 10px 10px 30px;
   position: relative;
   z-index: -2; }
   header::after {
@@ -43,15 +43,24 @@ header {
   color: transparent;
   display: block;
   background: url("/img/logo.svg") no-repeat center;
-  width: 370px;
-  height: 50px; }
+  max-width: 370px;
+  max-height: 50px; }
   .logo.var-center {
-    margin: 5px auto; }
+    margin: 5px auto 15px; }
 
 .login-box {
-  position: absolute;
-  top: 0;
-  right: 0; }
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end; }
+  @media all and (min-width: 550px) {
+    .login-box {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 20px 10px 5px; } }
 
 .button {
   display: inline-block;
@@ -65,15 +74,26 @@ header {
   font-family: "mm-text-regular", sans-serif;
   font-size: 1em; }
   .button.var-header {
-    margin-right: 20px;
-    margin-top: 20px; }
+    margin: 0 10px 10px; }
   .button.var-center {
-    margin: 0 auto;
-    display: block;
-    width: 200px;
-    text-align: center; }
+    text-align: center;
+    margin: 0 auto; }
+  .button.var-call-to-action {
+    background: #df0000;
+    color: white;
+    border-color: white;
+    font-size: 2em;
+    padding: 7px 20px 10px;
+    margin: 10px;
+    -webkit-box-shadow: 0 0 5px #999999;
+            box-shadow: 0 0 5px #999999; }
+    .button.var-call-to-action.var-center {
+      display: block;
+      width: 145px; }
 
-.box {
-  display: block;
-  width: 200px;
-  height: 200px; }
+.heading-1 {
+  font-family: "mm-text-bold", sans-serif;
+  font-size: 3em; }
+  .heading-1.var-center {
+    text-align: center;
+    padding: 10px; }

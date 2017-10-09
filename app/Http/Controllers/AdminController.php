@@ -12,6 +12,7 @@ class AdminController extends Controller
     }
 
     function index(){
-	    return "to make";
+
+	    return view('settings');
     }
 }
