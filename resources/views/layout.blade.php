@@ -2,13 +2,15 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
 	<meta charset="UTF-8">
-	<title>{{ __('home.reward-title') }}</title>
+	<title>{{ __('app.title') }}</title>
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 </head>
 <body>
 <header>
-	<h1 class="logo var-center">MediaMarkt</h1>
+	<a href="{{ route('home') }}" class="link">
+		<h1 class="logo var-center">MediaMarkt</h1>
+	</a>
 	<section class="login-box">
 		@guest
 			<a class="button var-header" href="{{ route('login') }}">Login</a>
@@ -20,6 +22,7 @@
 		@endguest
 	</section>
 </header>
+<h2 class="heading-1 var-center">{{ __('app.title') }}</h2>
 @yield('content')
 <footer>
 	<p class="copyright">© MediaMarkt 2017</p>

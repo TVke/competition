@@ -17,7 +17,6 @@ header{
 	display: block;
 	padding: 10px 10px ( $bending-height/2 + 10px);
 	position: relative;
-	z-index: -2;
 
 	&::after{
 		content: "";
@@ -28,7 +27,6 @@ header{
 		position: absolute;
 		left:0;
 		right: 0;
-		z-index: -1;
 		border-radius: 50% 50% 0 0;
 	}
 }
@@ -58,6 +56,11 @@ header{
 	}
 }
 
+.link{
+	display: block;
+	text-decoration: none;
+}
+
 .button{
 	display: inline-block;
 	margin: 5px;
@@ -76,20 +79,31 @@ header{
 	&.var-center{
 		text-align: center;
 		margin: 0 auto;
+		display: block;
 	}
 	&.var-call-to-action{
 		background: $brand-primary;
 		color: $brand-primary-contrast;
-		border-color: $neutral-0;
+		border: 3px solid $neutral-0;
+		border-radius: 10px;
 		font-size: 2em;
 		padding:7px 20px 10px;
 		margin: 20px auto;
 		box-shadow: 0 0 5px $neutral-4;
+		width:145px;
 
-		&.var-center{
-			display: block;
-			width:145px;
+		&:hover{
+			background: $brand-primary;
+			box-shadow: 0 0 2px $neutral-4;
 		}
+	}
+	&.var-action-sub{
+		width: 130px;
+	}
+
+	&:hover{
+		background: $neutral-10;
+		color: $neutral-0;
 	}
 }
 
@@ -103,18 +117,76 @@ header{
 	}
 }
 
-.body-text{
+.heading-2{
+	font-family: $title-font;
+	padding: 5px;
+}
+
+.heading-3{
+	font-family: $title-font;
+	padding: 5px;
+
+	&.var-space-on-top{
+		padding-top: 30px;
+	}
+}
+
+.var-underline{
+	text-decoration: underline;
+}
+
+.info-block{
 	display: block;
-	padding: 20px;
+	padding: 15px;
 	max-width: 800px;
 	margin: 0 auto;
+
+	&.var-medium{
+		max-width: 620px;
+	}
+	&.var-small{
+		max-width: 400px;
+	}
+	&.var-space{
+		margin: 50px auto 60px;
+	}
+	&.var-space-on-bottom{
+		margin-bottom: 60px;
+	}
+}
+
+.list{
+	margin-left: 30px;
+
+	&.var-dash{
+		list-style: none;
+
+		li{
+			text-indent: -27px;
+
+			&::before{
+				content: "-";
+				padding: 10px;
+			}
+		}
+	}
+	&.var-none{
+		list-style: none;
+	}
+}
+
+.list-item{
+	color: $neutral-6;
+}
+
+.body-text{
 	color: $neutral-6;
 }
 
 footer{
-	border-radius: 50% 50% 0 0;
 	background: $neutral-10;
-	margin-top: 15px;
+	margin: 30px auto 0;
+	width: 140px;
 }
 
 .copyright{

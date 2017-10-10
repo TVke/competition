@@ -1,19 +1,23 @@
 @extends('layout')
 @section('content')
-	<h2 class="heading-1 var-center">{{ __('home.reward-title') }}</h2>
-	<p class="body-text">{{ __('home.game-information') }}
-	</p>
-	<a class="button var-center var-call-to-action" href="{{ route('play') }}">{{ __('home.call-to-action') }}</a>
-	<section>
-		<h3 class="heading-2 var-underline">{{ __('home.winners-title') }}</h3>
+	<section class="info-block var-medium var-space-on-bottom">
+		<p class="body-text">{{ __('app.win-information') }}</p>
+		<p class="body-text">{{ __('app.game-information') }}</p>
+	</section>
+
+	<a class="button var-center var-call-to-action" href="{{ route('play') }}">{{ __('app.call-to-action') }}</a>
+	<a class="button var-center var-action-sub" href="{{ route('rules') }}">{{ __('app.rules') }}</a>
+	<section class="info-block var-small var-space">
+		<h3 class="heading-3 var-underline">{{ __('app.winners-title') }}</h3>
 		<ol class="list">
 			<li class="list-item">Thomas</li>
 		</ol>
-		<h3 class="heading-2 var-underline">{{ __('home.periods-title') }}</h3>
-		<ul class="list">
-			<li class="list-item">{{ __('home.periods-body',['number'=>2,'start'=>"20/10/2017 00:00",'end'=>"29/10/2017 00:00"]) }}</li>
-			<li class="list-item">{{ __('home.periods-body',['number'=>3,'start'=>"20/11/2017 00:00",'end'=>"29/11/2017 00:00"]) }}</li>
-			<li class="list-item">{{ __('home.periods-body',['number'=>4,'start'=>"20/12/2017 00:00",'end'=>"29/12/2017 00:00"]) }}</li>
+
+		<h3 class="heading-3 var-underline var-space-on-top">{{ __('app.periods-title') }}</h3>
+		<ul class="list var-dash">
+			<li class="list-item">{{ __('app.periods-body',['number'=>2,'start'=>"20 okt 2017 00:00",'end'=>"29 okt 2017 00:00"]) }}</li>
+			<li class="list-item">{{ __('app.periods-body',['number'=>3,'start'=>"20/11/2017 00:00",'end'=>"29/11/2017 00:00"]) }}</li>
+			<li class="list-item">{{ __('app.periods-body',['number'=>4,'start'=>"20/12/2017 00:00",'end'=>"29/12/2017 00:00"]) }}</li>
 		</ul>
 	</section>
 @endsection

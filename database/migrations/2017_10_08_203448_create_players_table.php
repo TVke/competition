@@ -24,6 +24,7 @@ class CreatePlayersTable extends Migration
             $table->ipAddress('ip');
             $table->timestamp('start');
             $table->timestamp('end')->nullable()->default(null);
+            $table->boolean('possible_dis')->default(0);
             $table->boolean('disqualified')->default(0);
             $table->timestamps();
         });

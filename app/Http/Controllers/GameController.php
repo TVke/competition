@@ -12,4 +12,7 @@ class GameController extends Controller
 	function play(){
 		return view('game');
 	}
+	function rules(){
+		return view('rules');
+	}
 }
