@@ -46,20 +46,6 @@ header {
   .logo.var-center {
     margin: 5px auto 15px; }
 
-.login-box {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end; }
-  @media all and (min-width: 550px) {
-    .login-box {
-      position: absolute;
-      top: 0;
-      right: 0;
-      margin: 20px 10px 5px; } }
-
 .link {
   display: block;
   text-decoration: none; }
@@ -75,8 +61,6 @@ header {
   text-decoration: none;
   font-family: "mm-text-regular", sans-serif;
   font-size: 1em; }
-  .button.var-header {
-    margin: 0 10px 10px; }
   .button.var-center {
     text-align: center;
     margin: 0 auto;
@@ -98,6 +82,14 @@ header {
               box-shadow: 0 0 2px #999999; }
   .button.var-action-sub {
     width: 130px; }
+  .button.var-footer {
+    background: none;
+    border: none;
+    border-left: 1px solid white;
+    color: white;
+    border-radius: 0; }
+    .button.var-footer:hover {
+      text-decoration: underline; }
   .button:hover {
     background: black;
     color: white; }
@@ -157,7 +149,10 @@ header {
 footer {
   background: black;
   margin: 30px auto 0;
-  width: 140px; }
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 206px; }
 
 .copyright {
   color: white;

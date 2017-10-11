@@ -43,18 +43,18 @@ header{
 	}
 }
 
-.login-box{
-	display: flex;
-	justify-content: flex-end;
-
-	// placing on top when there is space
-	@media all and (min-width: 550px){
-		position: absolute;
-		top:0;
-		right: 0;
-		margin: 20px 10px 5px;
-	}
-}
+//.login-box{
+//	display: flex;
+//	justify-content: flex-end;
+//
+//	// placing on top when there is space
+//	@media all and (min-width: 550px){
+//		position: absolute;
+//		top:0;
+//		right: 0;
+//		margin: 20px 10px 5px;
+//	}
+//}
 
 .link{
 	display: block;
@@ -73,14 +73,12 @@ header{
 	font-family: $body-font;
 	font-size: 1em;
 
-	&.var-header{
-		margin:0 10px 10px;
-	}
 	&.var-center{
 		text-align: center;
 		margin: 0 auto;
 		display: block;
 	}
+
 	&.var-call-to-action{
 		background: $brand-primary;
 		color: $brand-primary-contrast;
@@ -97,8 +95,21 @@ header{
 			box-shadow: 0 0 2px $neutral-4;
 		}
 	}
+
 	&.var-action-sub{
 		width: 130px;
+	}
+
+	&.var-footer{
+		background: none;
+		border: none;
+		border-left: 1px solid $neutral-0;
+		color: $neutral-0;
+		border-radius: 0;
+
+		&:hover{
+			text-decoration: underline;
+		}
 	}
 
 	&:hover{
@@ -186,7 +197,8 @@ header{
 footer{
 	background: $neutral-10;
 	margin: 30px auto 0;
-	width: 140px;
+	display: flex;
+	width: 206px;
 }
 
 .copyright{

@@ -12,19 +12,20 @@
 		<h1 class="logo var-center">MediaMarkt</h1>
 	</a>
 	<section class="login-box">
-		@guest
-			<a class="button var-header" href="{{ route('login') }}">Login</a>
-		@else
+		@auth
 			<form action="{{ route('logout') }}" method="POST">
 				{{ csrf_field() }}
 				<input class="button var-header" type="submit" value="Logout">
 			</form>
-		@endguest
+		@endauth
 	</section>
 </header>
 <h2 class="heading-1 var-center">{{ __('app.title') }}</h2>
 @yield('content')
 <footer>
 	<p class="copyright">© MediaMarkt 2017</p>
+	@guest
+		<a class="button var-footer" href="{{ route('login') }}">Admin</a>
+	@endguest
 </footer>
 </body>
