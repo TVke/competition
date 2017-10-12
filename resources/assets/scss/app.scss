@@ -43,18 +43,18 @@ header{
 	}
 }
 
-//.login-box{
-//	display: flex;
-//	justify-content: flex-end;
-//
-//	// placing on top when there is space
-//	@media all and (min-width: 550px){
-//		position: absolute;
-//		top:0;
-//		right: 0;
-//		margin: 20px 10px 5px;
-//	}
-//}
+.login-box{
+	display: flex;
+	justify-content: flex-end;
+
+	// placing on top when there is space
+	@media all and (min-width: 550px){
+		position: absolute;
+		top:0;
+		right: 0;
+		margin: 15px 20px 5px;
+	}
+}
 
 .link{
 	display: block;
@@ -194,15 +194,85 @@ header{
 	color: $neutral-6;
 }
 
+// game
+
+time{
+	display: block;
+	text-align: center;
+	font-size: 2em;
+}
+
+#dots{
+	width: 256px;
+	height: 256px;
+	position: relative;
+	margin: 20px auto;
+	padding: 0 20px;
+	display: block;
+
+	#msg{
+		position: absolute;
+		bottom: 75px;
+		left: 0;
+		right: 0;
+		background: rgba(255,255,255,0.8);
+		transition: all 0.5s ease;
+		opacity: 0;
+		text-align: center;
+		color: $neutral-0;
+		backdrop-filter: blur(10px);
+
+		&.show{
+			opacity: 1;
+			color: $neutral-10;
+		}
+	}
+
+	noscript{
+		display: block;
+		color: $neutral-0;
+		text-align: center;
+		font-size: 3em;
+		padding: 30px 0;
+	}
+
+	&::after{
+		content: "";
+		display: block;
+		background: $neutral-10;
+		width: 256px;
+		height: 256px;
+		position: absolute;
+		left: 20px;
+		right: 20px;
+		top: 0;
+		bottom: 0;
+		z-index: -2;
+
+		@media all and (min-width:512px){
+			width: 512px;
+			height: 512px;
+		}
+	}
+
+	@media all and (min-width:512px){
+		width: 512px;
+		height: 512px;
+	}
+}
+
 footer{
 	background: $neutral-10;
 	margin: 30px auto 0;
 	display: flex;
 	width: 206px;
+	text-align: center;
 }
 
 .copyright{
 	color: $neutral-0;
 	text-align: center;
 	padding: 10px;
+	flex: 1;
 }
+

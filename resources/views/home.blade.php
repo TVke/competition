@@ -13,11 +13,11 @@
 			<li class="list-item">Thomas</li>
 		</ol>
 
-		<h3 class="heading-3 var-underline var-space-on-top">{{ __('app.periods-title') }}</h3>
-		<ul class="list var-dash">
-			<li class="list-item">{{ __('app.periods-body',['number'=>2,'start'=>"20 okt 2017 00:00",'end'=>"29 okt 2017 00:00"]) }}</li>
-			<li class="list-item">{{ __('app.periods-body',['number'=>3,'start'=>"20/11/2017 00:00",'end'=>"29/11/2017 00:00"]) }}</li>
-			<li class="list-item">{{ __('app.periods-body',['number'=>4,'start'=>"20/12/2017 00:00",'end'=>"29/12/2017 00:00"]) }}</li>
-		</ul>
+		<h3 class="heading-3 var-space-on-top">{{ __('app.periods-title',['end'=>'20 okt 2017']) }}</h3>
+		{{--<ul class="list var-dash">--}}
+			{{--<li class="list-item">{{ __('app.periods-body',['number'=>2,'start'=>"20 okt 2017 00:00",'end'=>"29 okt 2017 00:00"]) }}</li>--}}
+			{{--<li class="list-item">{{ __('app.periods-body',['number'=>3,'start'=>"20/11/2017 00:00",'end'=>"29/11/2017 00:00"]) }}</li>--}}
+			{{--<li class="list-item">{{ __('app.periods-body',['number'=>4,'start'=>"20/12/2017 00:00",'end'=>"29/12/2017 00:00"]) }}</li>--}}
+		{{--</ul>--}}
 	</section>
 @endsection

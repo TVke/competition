@@ -46,6 +46,20 @@ header {
   .logo.var-center {
     margin: 5px auto 15px; }
 
+.login-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end; }
+  @media all and (min-width: 550px) {
+    .login-box {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 15px 20px 5px; } }
+
 .link {
   display: block;
   text-decoration: none; }
@@ -146,15 +160,74 @@ header {
 .body-text {
   color: #666666; }
 
+time {
+  display: block;
+  text-align: center;
+  font-size: 2em; }
+
+#dots {
+  width: 256px;
+  height: 256px;
+  position: relative;
+  margin: 20px auto;
+  padding: 0 20px;
+  display: block; }
+  #dots #msg {
+    position: absolute;
+    bottom: 75px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.8);
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    opacity: 0;
+    text-align: center;
+    color: white;
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); }
+    #dots #msg.show {
+      opacity: 1;
+      color: black; }
+  #dots noscript {
+    display: block;
+    color: white;
+    text-align: center;
+    font-size: 3em;
+    padding: 30px 0; }
+  #dots::after {
+    content: "";
+    display: block;
+    background: black;
+    width: 256px;
+    height: 256px;
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    top: 0;
+    bottom: 0;
+    z-index: -2; }
+    @media all and (min-width: 512px) {
+      #dots::after {
+        width: 512px;
+        height: 512px; } }
+  @media all and (min-width: 512px) {
+    #dots {
+      width: 512px;
+      height: 512px; } }
+
 footer {
   background: black;
   margin: 30px auto 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 206px; }
+  width: 206px;
+  text-align: center; }
 
 .copyright {
   color: white;
   text-align: center;
-  padding: 10px; }
+  padding: 10px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1; }

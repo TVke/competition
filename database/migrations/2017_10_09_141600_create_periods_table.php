@@ -15,7 +15,14 @@ class CreatePeriodsTable extends Migration
     {
         Schema::create('periods', function (Blueprint $table) {
             $table->increments('id');
+            $table->dateTime('start');
+            $table->dateTime('end');
+            $table->integer('winner')->unsigned()->nullable()->default(null);
             $table->timestamps();
+
+            $table->foreign('winner')
+	            ->references('id')->on('players')
+	            ->onDelete('cascade');
         });
     }
 

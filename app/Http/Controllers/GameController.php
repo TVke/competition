@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
+	public function __construct()
+	{
+		$this->middleware('guest');
+	}
+
     function home(){
     	return view('home');
     }
