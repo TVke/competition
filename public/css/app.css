@@ -159,6 +159,8 @@ header {
 
 .body-text {
   color: #666666; }
+  .body-text.var-center {
+    text-align: center; }
 
 time {
   display: block;
@@ -177,17 +179,20 @@ time {
     bottom: 75px;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.8);
+    background: black;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     opacity: 0;
     text-align: center;
-    color: white;
+    color: black;
+    font-size: 1.5em;
+    padding: 15px 0;
     -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px); }
     #dots #msg.show {
       opacity: 1;
-      color: black; }
+      color: black;
+      background: rgba(255, 255, 255, 0.8); }
   #dots noscript {
     display: block;
     color: white;

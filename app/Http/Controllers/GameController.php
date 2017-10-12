@@ -20,4 +20,8 @@ class GameController extends Controller
 	function rules(){
 		return view('rules');
 	}
+
+	function add_player(){
+		// add player info to IP
+	}
 }

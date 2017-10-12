@@ -192,6 +192,10 @@ header{
 
 .body-text{
 	color: $neutral-6;
+
+	&.var-center{
+		text-align: center;
+	}
 }
 
 // game
@@ -215,16 +219,19 @@ time{
 		bottom: 75px;
 		left: 0;
 		right: 0;
-		background: rgba(255,255,255,0.8);
+		background: $neutral-10;
 		transition: all 0.5s ease;
 		opacity: 0;
 		text-align: center;
-		color: $neutral-0;
+		color: $neutral-10;
+		font-size: 1.5em;
+		padding: 15px 0;
 		backdrop-filter: blur(10px);
 
 		&.show{
 			opacity: 1;
 			color: $neutral-10;
+			background: rgba(255,255,255,0.8);
 		}
 	}
 
