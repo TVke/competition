@@ -18,5 +18,6 @@ return [
     'call-to-action' => 'Speel nu!',
 	'winners-title' => 'Vorige winnaars:',
 	'periods-title' => 'Je kan nog meedoen tot :end.',
+	'periods-body' => 'periode :number: van :start tot :end',
 
 ];
