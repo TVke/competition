@@ -19,13 +19,14 @@ class CreatePlayersTable extends Migration
             $table->string('first_name')->nullable()->default(null);
             $table->string('email')->nullable()->default(null);
             $table->string('adres')->nullable()->default(null);
-            $table->integer('postalcode')->nullable()->default(null);
+            $table->string('postalcode')->nullable()->default(null);
             $table->string('city')->nullable()->default(null);
             $table->ipAddress('ip');
             $table->timestamp('start');
             $table->timestamp('end')->nullable()->default(null);
             $table->boolean('possible_dis')->default(0);
             $table->boolean('disqualified')->default(0);
+            $table->string('friend_token')->nullable()->default(null);
             $table->timestamps();
         });
     }

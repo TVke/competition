@@ -17,7 +17,7 @@ class CreatePeriodsTable extends Migration
             $table->increments('id');
             $table->dateTime('start');
             $table->dateTime('end');
-            $table->integer('winner')->unsigned()->nullable()->default(null);
+            $table->unsignedInteger('winner')->nullable()->default(null);
             $table->timestamps();
 
             $table->foreign('winner')
