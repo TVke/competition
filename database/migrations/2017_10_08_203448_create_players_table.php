@@ -18,7 +18,7 @@ class CreatePlayersTable extends Migration
             $table->string('surname')->nullable()->default(null);
             $table->string('first_name')->nullable()->default(null);
             $table->string('email')->nullable()->default(null);
-            $table->string('adres')->nullable()->default(null);
+            $table->mediumText('adres')->nullable()->default(null);
             $table->string('postalcode')->nullable()->default(null);
             $table->string('city')->nullable()->default(null);
             $table->ipAddress('ip');
