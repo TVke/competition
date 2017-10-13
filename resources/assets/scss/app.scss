@@ -100,6 +100,12 @@ header{
 		width: 130px;
 	}
 
+	&.var-start{
+		position: absolute;
+		z-index: 1;
+		margin: 0;
+	}
+
 	&.var-footer{
 		background: none;
 		border: none;
@@ -140,6 +146,9 @@ header{
 	&.var-space-on-top{
 		padding-top: 30px;
 	}
+	&.var-center{
+		text-align: center;
+	}
 }
 
 .var-underline{
@@ -155,12 +164,15 @@ header{
 	&.var-medium{
 		max-width: 620px;
 	}
+
 	&.var-small{
-		max-width: 400px;
+		max-width: 320px;
 	}
+
 	&.var-space{
 		margin: 50px auto 60px;
 	}
+
 	&.var-space-on-bottom{
 		margin-bottom: 60px;
 	}
@@ -181,8 +193,13 @@ header{
 			}
 		}
 	}
+
 	&.var-none{
 		list-style: none;
+	}
+
+	&.var-space-on-top{
+		margin-top: 10px;
 	}
 }
 
@@ -241,6 +258,33 @@ time{
 		text-align: center;
 		font-size: 3em;
 		padding: 30px 0;
+	}
+
+	&.begin{
+		pointer-events: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		&::before{
+			content: "";
+			display: block;
+			background: rgba(255,255,255,0.8);
+			width: 256px;
+			height: 256px;
+			position: absolute;
+			left: 20px;
+			right: 20px;
+			top: 0;
+			bottom: 0;
+			z-index: 1;
+			backdrop-filter: blur(10px);
+
+			@media all and (min-width:512px){
+				width: 512px;
+				height: 512px;
+			}
+		}
 	}
 
 	&::after{

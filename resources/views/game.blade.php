@@ -2,7 +2,8 @@
 @section('content')
 	<p class="body-text var-center">Let goed op, er wordt vaak over een kleine bol gekeken!</p>
 	<time>{{ old('time','00:00') }}</time>
-	<div id="dots">
+	<div id="dots" class="begin">
+		<button id="start" class="button var-call-to-action var-center var-start">Start</button>
 		<noscript><p>Javascript moet aanstaan.</p></noscript>
 		<div id="msg"><p>Gefeliciteerd! Je kan de afbeelding volledig zien.</p><p>Vul je gegevens in en maak kans op een iPhone X!</p></div>
 	</div>
@@ -27,5 +28,3 @@
 	<script src={{ asset('/js/d3.min.js') }}></script>
 	<script src="{{ asset('/js/app.js') }}"></script>
 @endsection
-
-
