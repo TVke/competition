@@ -9,6 +9,7 @@
 	<form action="{{ route('update_user') }}" method="post">
 		{{ csrf_field() }}
 		<input type="hidden" name="time" value="{{ old('time') }}">
+		<input type="hidden" name="ip" value="{{ $ip }}">
 		<label for="first-name">voornaam</label>
 		<input name="first_name" id="first-name" value="{{ old('first_name') }}">
 		<label for="surname">achternaam</label>

@@ -15,7 +15,8 @@ class GameController extends Controller
     	return view('home');
     }
 	function play(){
-		return view('game');
+    	$ip = request()->getClientIp();
+		return view('game',compact('ip'));
 	}
 	function rules(){
 		return view('rules');
