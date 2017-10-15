@@ -62,7 +62,10 @@ var koala={version:'1.8.2'};
 		circle.attr('cx',function(d){return d.x;}).attr('cy',function(d){return d.y;}).attr('r',function(d){return d.size/2;}).attr('fill',function(d){return String(d.rgb);}).attr('fill-opacity',1).each('end',function(d){d.node=this;});
 	};
 	// property settings
-	var vis,maxSize = document.getElementById("dots").offsetWidth - 40,minSize = maxSize===256?4:8,dim=maxSize/minSize;
+	var vis,dots = document.getElementById("dots"),maxSize = dots.offsetWidth - 40,minSize = maxSize===256?4:8,dim=maxSize/minSize
+		//start properties
+		,circle = dots.getElementsByTagName("svg")[0],start=false,startCheck;
+
 	koala.loadImage=function(imageData){
 		var canvas=document.createElement('canvas').getContext('2d');
 		canvas.drawImage(imageData,0,0,dim,dim);
@@ -183,6 +186,9 @@ var koala={version:'1.8.2'};
 			d3.event.preventDefault();
 		}
 		d3.select("div#dots").on('mousemove.koala',onMouseMove).on('touchmove.koala',onTouchMove).on('touchend.koala',onTouchEnd).on('touchcancel.koala',onTouchEnd);
+
+		// adding start move for better usability
+		startCheck = setInterval(function(){ (start)?findAndSplit([0, 0], [125, 125]):null; },100);
 	};
 
 	// loading
@@ -203,8 +209,17 @@ var koala={version:'1.8.2'};
 	if(!parse)return;
 	var file=parse.file;window.shownFile=parse.shownFile;
 	function onEvent(what,value){
-		if(what==='LayerClear'&& value === 0){
+		if(what === 'LayerClear' && value === 0){
 			document.getElementById("msg").classList.add("show");
+		}
+		if(what === 'LayerClear' && value === 5){
+			// stop the startCheck
+			clearInterval(startCheck);
+
+			//start counting
+
+
+			//send
 		}
 	}
 	var img=new Image();
@@ -216,4 +231,14 @@ var koala={version:'1.8.2'};
 		}
 	};
 	img.src=file;
+	// start button
+	var startButton = document.getElementById("start");
+	startButton.addEventListener("click", begin);
+
+	function begin(e){
+		e.preventDefault();
+		document.getElementById("game").removeAttribute("class");
+		start = true;
+	}
+
 })(window);

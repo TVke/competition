@@ -96,14 +96,18 @@ header{
 		}
 	}
 
-	&.var-action-sub{
-		width: 130px;
+	&.var-start{
+		display: none;
+		position: absolute;
+		z-index: 3;
+		cursor: pointer;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
 	}
 
-	&.var-start{
-		position: absolute;
-		z-index: 1;
-		margin: 0;
+	&.var-action-sub{
+		width: 130px;
 	}
 
 	&.var-footer{
@@ -223,82 +227,56 @@ time{
 	font-size: 2em;
 }
 
-#dots{
-	width: 256px;
-	height: 256px;
+#game{
 	position: relative;
-	margin: 20px auto;
-	padding: 0 20px;
-	display: block;
 
-	#msg{
-		position: absolute;
-		bottom: 75px;
-		left: 0;
-		right: 0;
-		background: $neutral-10;
-		transition: all 0.5s ease;
-		opacity: 0;
-		text-align: center;
-		color: $neutral-10;
-		font-size: 1.5em;
-		padding: 15px 0;
-		backdrop-filter: blur(10px);
-
-		&.show{
-			opacity: 1;
-			color: $neutral-10;
-			background: rgba(255,255,255,0.8);
-		}
-	}
-
-	noscript{
+	#dots{
+		width: 256px;
+		height: 256px;
+		margin: 20px auto;
+		padding: 0 20px;
 		display: block;
-		color: $neutral-0;
-		text-align: center;
-		font-size: 3em;
-		padding: 30px 0;
-	}
 
-	&.begin{
-		pointer-events: none;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-
-		&::before{
-			content: "";
-			display: block;
-			background: rgba(255,255,255,0.8);
-			width: 256px;
-			height: 256px;
+		#msg{
 			position: absolute;
-			left: 20px;
-			right: 20px;
-			top: 0;
-			bottom: 0;
+			bottom: 50px;
+			left: 0;
+			right: 0;
+			background: $neutral-10;
+			transition: all 0.5s ease;
+			opacity: 0;
+			text-align: center;
+			color: $neutral-10;
+			font-size: 1.5em;
+			padding: 15px 0;
 			z-index: 1;
 			backdrop-filter: blur(10px);
 
-			@media all and (min-width:512px){
-				width: 512px;
-				height: 512px;
+			&.show{
+				opacity: 1;
+				color: $neutral-10;
+				background: rgba(255,255,255,0.8);
 			}
 		}
-	}
 
-	&::after{
-		content: "";
-		display: block;
-		background: $neutral-10;
-		width: 256px;
-		height: 256px;
-		position: absolute;
-		left: 20px;
-		right: 20px;
-		top: 0;
-		bottom: 0;
-		z-index: -2;
+		noscript{
+			position: absolute;
+			z-index: 4;
+			background: white;
+			display: block;
+			text-align: center;
+			font-size: 3em;
+			padding: 30px 0;
+		}
+
+		svg{
+			background: $neutral-10;
+			display: block;
+			z-index: 0;
+
+			// pixel fix of background
+			padding-right: 1px;
+		}
 
 		@media all and (min-width:512px){
 			width: 512px;
@@ -306,9 +284,32 @@ time{
 		}
 	}
 
-	@media all and (min-width:512px){
-		width: 512px;
-		height: 512px;
+	&.begin{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		.button{
+			display: block;
+		}
+
+		#dots{
+			pointer-events: none;
+			position: relative;
+
+			&::after{
+				content: "";
+				display: block;
+				background: rgba(255,255,255,0.8);
+				position: absolute;
+				left: 20px;
+				right: 19px;
+				top: 0;
+				bottom: 0;
+				z-index: 2;
+				backdrop-filter: blur(10px);
+			}
+		}
 	}
 }
 

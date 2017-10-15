@@ -94,12 +94,16 @@ header {
       background: #df0000;
       -webkit-box-shadow: 0 0 2px #999999;
               box-shadow: 0 0 2px #999999; }
+  .button.var-start {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    cursor: pointer;
+    left: 0;
+    right: 0;
+    margin: 0 auto; }
   .button.var-action-sub {
     width: 130px; }
-  .button.var-start {
-    position: absolute;
-    z-index: 1;
-    margin: 0; }
   .button.var-footer {
     background: none;
     border: none;
@@ -175,40 +179,52 @@ time {
   text-align: center;
   font-size: 2em; }
 
-#dots {
-  width: 256px;
-  height: 256px;
-  position: relative;
-  margin: 20px auto;
-  padding: 0 20px;
-  display: block; }
-  #dots #msg {
-    position: absolute;
-    bottom: 75px;
-    left: 0;
-    right: 0;
-    background: black;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    opacity: 0;
-    text-align: center;
-    color: black;
-    font-size: 1.5em;
-    padding: 15px 0;
-    -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px); }
-    #dots #msg.show {
-      opacity: 1;
+#game {
+  position: relative; }
+  #game #dots {
+    width: 256px;
+    height: 256px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: block; }
+    #game #dots #msg {
+      position: absolute;
+      bottom: 50px;
+      left: 0;
+      right: 0;
+      background: black;
+      -webkit-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+      opacity: 0;
+      text-align: center;
       color: black;
-      background: rgba(255, 255, 255, 0.8); }
-  #dots noscript {
-    display: block;
-    color: white;
-    text-align: center;
-    font-size: 3em;
-    padding: 30px 0; }
-  #dots.begin {
-    pointer-events: none;
+      font-size: 1.5em;
+      padding: 15px 0;
+      z-index: 1;
+      -webkit-backdrop-filter: blur(10px);
+              backdrop-filter: blur(10px); }
+      #game #dots #msg.show {
+        opacity: 1;
+        color: black;
+        background: rgba(255, 255, 255, 0.8); }
+    #game #dots noscript {
+      position: absolute;
+      z-index: 4;
+      background: white;
+      display: block;
+      text-align: center;
+      font-size: 3em;
+      padding: 30px 0; }
+    #game #dots svg {
+      background: black;
+      display: block;
+      z-index: 0;
+      padding-right: 1px; }
+    @media all and (min-width: 512px) {
+      #game #dots {
+        width: 512px;
+        height: 512px; } }
+  #game.begin {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -218,44 +234,23 @@ time {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center; }
-    #dots.begin::before {
-      content: "";
-      display: block;
-      background: rgba(255, 255, 255, 0.8);
-      width: 256px;
-      height: 256px;
-      position: absolute;
-      left: 20px;
-      right: 20px;
-      top: 0;
-      bottom: 0;
-      z-index: 1;
-      -webkit-backdrop-filter: blur(10px);
-              backdrop-filter: blur(10px); }
-      @media all and (min-width: 512px) {
-        #dots.begin::before {
-          width: 512px;
-          height: 512px; } }
-  #dots::after {
-    content: "";
-    display: block;
-    background: black;
-    width: 256px;
-    height: 256px;
-    position: absolute;
-    left: 20px;
-    right: 20px;
-    top: 0;
-    bottom: 0;
-    z-index: -2; }
-    @media all and (min-width: 512px) {
-      #dots::after {
-        width: 512px;
-        height: 512px; } }
-  @media all and (min-width: 512px) {
-    #dots {
-      width: 512px;
-      height: 512px; } }
+    #game.begin .button {
+      display: block; }
+    #game.begin #dots {
+      pointer-events: none;
+      position: relative; }
+      #game.begin #dots::after {
+        content: "";
+        display: block;
+        background: rgba(255, 255, 255, 0.8);
+        position: absolute;
+        left: 20px;
+        right: 19px;
+        top: 0;
+        bottom: 0;
+        z-index: 2;
+        -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px); }
 
 footer {
   background: black;
