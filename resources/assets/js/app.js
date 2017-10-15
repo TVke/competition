@@ -62,9 +62,9 @@ var koala={version:'1.8.2'};
 		circle.attr('cx',function(d){return d.x;}).attr('cy',function(d){return d.y;}).attr('r',function(d){return d.size/2;}).attr('fill',function(d){return String(d.rgb);}).attr('fill-opacity',1).each('end',function(d){d.node=this;});
 	};
 	// property settings
-	var vis,dots = document.getElementById("dots"),maxSize = dots.offsetWidth - 40,minSize = maxSize===256?4:8,dim=maxSize/minSize
+	var vis,dots = document.getElementById("dots"),maxSize = dots.offsetWidth - 40,minSize = maxSize===256?4:8,dim = maxSize/minSize
 		//start properties
-		,circle = dots.getElementsByTagName("svg")[0],start=false,startCheck;
+		,startButton = document.getElementById("start"),start=false,startCheck,Timer,currentTime = 0,timeElement = document.getElementsByTagName("time")[0];
 
 	koala.loadImage=function(imageData){
 		var canvas=document.createElement('canvas').getContext('2d');
@@ -211,15 +211,19 @@ var koala={version:'1.8.2'};
 	function onEvent(what,value){
 		if(what === 'LayerClear' && value === 0){
 			document.getElementById("msg").classList.add("show");
+			//stop counting
+			clearInterval(Timer);
 		}
 		if(what === 'LayerClear' && value === 5){
 			// stop the startCheck
 			clearInterval(startCheck);
 
 			//start counting
-
+			Timer = setInterval(optellen, 100);
 
 			//send
+
+
 		}
 	}
 	var img=new Image();
@@ -231,14 +235,29 @@ var koala={version:'1.8.2'};
 		}
 	};
 	img.src=file;
+
 	// start button
-	var startButton = document.getElementById("start");
 	startButton.addEventListener("click", begin);
 
 	function begin(e){
 		e.preventDefault();
 		document.getElementById("game").removeAttribute("class");
 		start = true;
+	}
+	function optellen(){
+		++currentTime;
+		timeElement.innerHTML = visualTime(currentTime);
+	}
+	function visualTime(timeInPartsOfSeconds){
+		var nthOfASecond = 10
+			, minutePart = addZeroAndRound(((timeInPartsOfSeconds/nthOfASecond)/60)%60,2)
+			, secondsPart = addZeroAndRound((timeInPartsOfSeconds/nthOfASecond)%60,2)
+			, secondsAfterKommaPart = addZeroAndRound(timeInPartsOfSeconds%nthOfASecond,1);
+		return minutePart + ":" + secondsPart + "," + secondsAfterKommaPart;
+	}
+	function addZeroAndRound(number,length){
+		number = Math.floor(number);
+		return ((number+"").length < length)?"0" + number:number;
 	}
 
 })(window);

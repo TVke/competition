@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 	<p class="body-text var-center">Let goed op, er wordt vaak over een kleine bol gekeken!</p>
-	<time>{{ old('time','00:00') }}</time>
+	<time>{{ old('time','00:00,0') }}</time>
 	<section id="game" class="begin">
 		<button id="start" class="button var-call-to-action var-center var-start">Start</button>
 		<div id="dots">
@@ -9,11 +9,6 @@
 			<div id="msg"><p>Gefeliciteerd! Je kan de afbeelding volledig zien.</p><p>Vul je gegevens in en maak kans op een iPhone X!</p></div>
 		</div>
 	</section>
-	{{--<button id="start" class="button var-call-to-action var-center var-start begin">Start</button>--}}
-	{{--<div id="dots" class="begin">--}}
-		{{--<noscript>Javascript moet aanstaan.</noscript>--}}
-		{{--<div id="msg"><p>Gefeliciteerd! Je kan de afbeelding volledig zien.</p><p>Vul je gegevens in en maak kans op een iPhone X!</p></div>--}}
-	{{--</div>--}}
 	<form action="{{ route('update_user') }}" method="post">
 		{{ csrf_field() }}
 		<input type="hidden" name="time" value="{{ old('time') }}">
