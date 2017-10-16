@@ -213,6 +213,12 @@ var koala={version:'1.8.2'};
 			document.getElementById("msg").classList.add("show");
 			//stop counting
 			clearInterval(Timer);
+
+			// time to form
+			document.getElementsByName("time")[0].value = currentTime;
+
+			//send
+			sendIt("end",true,checkFaul);
 		}
 		if(what === 'LayerClear' && value === 5){
 			// stop the startCheck
@@ -222,7 +228,7 @@ var koala={version:'1.8.2'};
 			Timer = setInterval(optellen, 100);
 
 			//send
-
+			sendIt("start",false);
 
 		}
 	}
@@ -259,5 +265,23 @@ var koala={version:'1.8.2'};
 		number = Math.floor(number);
 		return ((number+"").length < length)?"0" + number:number;
 	}
+	function sendIt(to,getting,back){
+		var xhttp = new XMLHttpRequest()
+			,data="_token="+ document.getElementsByName("_token")[0].value + "&ip="+ document.getElementsByName("ip")[0].value;
 
+		xhttp.open("POST","/" + to + "",true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+		if(getting){
+			xhttp.onreadystatechange = function(){
+				if(xhttp.readyState === 4 && xhttp.status === 200){
+					(back)(xhttp.responseText);
+				}
+			};
+		}
+		xhttp.send(data);
+	}
+	function checkFaul(responseTxt){
+		console.log(responseTxt);
+	}
 })(window);

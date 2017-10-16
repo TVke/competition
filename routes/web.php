@@ -15,6 +15,8 @@ Route::get('/', 'GameController@home')->name('home');
 Route::get('/play','GameController@play')->name('play');
 Route::get('/rules','GameController@rules')->name('rules');
 
+Route::post('/start','GameController@start');
+Route::post('/end','GameController@end');
 Route::put('/add/player','GameController@add_player')->name('update_user');
 
 Auth::routes();

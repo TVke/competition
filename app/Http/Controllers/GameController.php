@@ -36,6 +36,19 @@ class GameController extends Controller
 		return view('rules', compact('periodes'));
 	}
 
+	function start(Request $request){
+		
+//		return var_dump($request->is());
+//		return (Request::ajax())?"yes":"no";
+//		if(request()->ajax()){
+//			return "AJAX";
+//		}
+//		return "niet";
+	}
+	function end(Request $request){
+
+	}
+
 	function add_player(){
 		// add player info to IP
 	}
