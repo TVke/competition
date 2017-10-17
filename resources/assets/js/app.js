@@ -64,7 +64,9 @@ var koala={version:'1.8.2'};
 	// property settings
 	var vis,dots = document.getElementById("dots"),maxSize = dots.offsetWidth - 40,minSize = maxSize===256?4:8,dim = maxSize/minSize
 		//start properties
-		,startButton = document.getElementById("start"),start=false,startCheck,Timer,currentTime = 0,timeElement = document.getElementsByTagName("time")[0];
+		,startButton = document.getElementById("start"),start=false,startCheck,Timer,currentTime = 0,timeElement = document.getElementsByTagName("time")[0]
+		//end prperties
+		,token=document.getElementsByName("_token")[0].value,endToken=false;
 
 	koala.loadImage=function(imageData){
 		var canvas=document.createElement('canvas').getContext('2d');
@@ -77,7 +79,7 @@ var koala={version:'1.8.2'};
 		function onSplit(circle){
 			var layer=circle.layer;
 			splitableByLayer[layer]--;
-			if(splitableByLayer[layer]===0){
+			if(splitableByLayer[layer]===0 && (layer===0||layer===5)){
 				onEvent('LayerClear',layer);
 			}
 			var percent=1-d3.sum(splitableByLayer)/splitableTotal;
@@ -218,7 +220,8 @@ var koala={version:'1.8.2'};
 			document.getElementsByName("time")[0].value = currentTime;
 
 			//send
-			sendIt("end",true,checkFaul);
+			sendIt("end",true,handleEnd);
+
 		}
 		if(what === 'LayerClear' && value === 5){
 			// stop the startCheck
@@ -228,7 +231,7 @@ var koala={version:'1.8.2'};
 			Timer = setInterval(optellen, 100);
 
 			//send
-			sendIt("start",false);
+			sendIt("start",true,handleStart);
 
 		}
 	}
@@ -266,10 +269,13 @@ var koala={version:'1.8.2'};
 		return ((number+"").length < length)?"0" + number:number;
 	}
 	function sendIt(to,getting,back){
-		var xhttp = new XMLHttpRequest()
-			,data="_token="+ document.getElementsByName("_token")[0].value + "&ip="+ document.getElementsByName("ip")[0].value;
+		var xhttp = new XMLHttpRequest(),data;
+		data = "_token=" + token + "&ip=" + document.getElementsByName("ip")[0].value;
+		if(endToken){
+			data += "&et="+endToken;
+		}
 
-		xhttp.open("POST","/" + to + "",true);
+		xhttp.open("POST","/" + to + "");
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 		if(getting){
@@ -281,7 +287,15 @@ var koala={version:'1.8.2'};
 		}
 		xhttp.send(data);
 	}
-	function checkFaul(responseTxt){
-		console.log(responseTxt);
+	function handleStart(response){
+		endToken = response;
+	}
+	function handleEnd(response){
+		handleStart(response);
+		var et = document.createElement("input");
+		et.type = "hidden";
+		et.value = endToken;
+		et.name = "et";
+		document.getElementsByTagName("form")[0].appendChild(et);
 	}
 })(window);
