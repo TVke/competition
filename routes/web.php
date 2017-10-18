@@ -19,12 +19,6 @@ Route::post('/start','GameController@start');
 Route::post('/end','GameController@end');
 Route::put('/add/player','GameController@add_player')->name('update_user');
 
-Route::get('/test',function(\Illuminate\Http\Request $request){
-	$request->getClientIp();
-//	return hash_algos();
-	return hash("md5",$request->getClientIp());
-});
-
 Auth::routes();
 
 Route::get('/settings', 'AdminController@index')->name('admin');

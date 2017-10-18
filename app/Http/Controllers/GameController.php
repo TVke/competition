@@ -96,8 +96,18 @@ class GameController extends Controller
 		return $newToken;
 	}
 
-	function add_player(){
+	function add_player(Request $request){
 		// add player info to IP
+		$request->validate([
+			'time' => 'integer|required',
+			'ip' => 'ip|max:255|required',
+			'first_name' => 'string|max:255|required',
+			'surname' => 'string|max:255|required',
+			'email' => 'email|max:255|required',
+			'adres' => 'string|max:255|required',
+			'postcode' => 'alpha_num|max:100|required',
+			'city' => 'string|max:255|required',
+		]);
 
 
 	}

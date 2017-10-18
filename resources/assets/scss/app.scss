@@ -110,6 +110,22 @@ header{
 		width: 130px;
 	}
 
+	&.var-submit{
+		display: block;
+		background: $brand-primary;
+		color: $brand-primary-contrast;
+		border: 1px solid $neutral-0;
+		border-radius: 3px;
+		box-shadow: 0 0 5px $neutral-4;
+		margin: 20px 0;
+		font-size: 1.3em;
+		padding: 7px 13px;
+
+		&.var-full{
+			width: 100%;
+		}
+	}
+
 	&.var-footer{
 		background: none;
 		border: none;
@@ -308,6 +324,49 @@ time{
 				bottom: 0;
 				z-index: 2;
 				backdrop-filter: blur(10px);
+			}
+		}
+	}
+}
+
+.form{
+	min-width: 300px;
+	max-width: 600px;
+	width: 70%;
+	display: block;
+	margin: 0 auto;
+	padding: 10px;
+
+	.label{
+		display: block;
+		padding: 10px 0 5px;
+	}
+
+	.input{
+		font-size: 1em;
+		padding: 5px;
+		width: calc(100% - 13px);
+	}
+	.form-group{
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		.label{
+			display: block;
+			width: calc(50% - 5px);
+
+			&:first-child{
+				margin-right: 10px;
+			}
+		}
+
+		.input{
+			display: block;
+			flex: 1;
+
+			&:first-child{
+				margin-right: 10px;
 			}
 		}
 	}

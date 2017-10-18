@@ -278,6 +278,8 @@ var koala={version:'1.8.2'};
 		xhttp.open("POST","/" + to + "");
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+		xhttp.setRequestHeader("X-XSRF-TOKEN", document.cookie.substr(11));
+
 		if(getting){
 			xhttp.onreadystatechange = function(){
 				if(xhttp.readyState === 4 && xhttp.status === 200){

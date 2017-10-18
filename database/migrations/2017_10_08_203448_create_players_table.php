@@ -28,6 +28,7 @@ class CreatePlayersTable extends Migration
             $table->boolean('disqualified')->default(0);
             $table->string('safety_token')->default("");
             $table->string('friend_token')->nullable()->default(null);
+            $table->string('friend_email')->nullable()->default(null);
             $table->timestamps();
         });
     }
