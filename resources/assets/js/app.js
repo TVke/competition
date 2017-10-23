@@ -272,7 +272,7 @@ var koala={version:'1.8.2'};
 		var xhttp = new XMLHttpRequest(),data;
 		data = "_token=" + token + "&ip=" + document.getElementsByName("ip")[0].value;
 		if(endToken){
-			data += "&et="+endToken;
+			data += "&et="+endToken+"&ti="+currentTime;
 		}
 
 		xhttp.open("POST","/" + to + "");

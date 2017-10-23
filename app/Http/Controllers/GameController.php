@@ -7,6 +7,7 @@ use App\Player;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class GameController extends Controller
 {
@@ -38,9 +39,8 @@ class GameController extends Controller
 	}
 
 	function start(Request $request){
-		$token = $request->input(['_token']);
-		$encryptedToken = hash("md5",$request->getClientIp().$request->input(['_token']));
-		$currentTime = Carbon::now();
+		$currentTime = round(microtime(true),4);
+		$encryptedToken = Hash::make($request->getClientIp().$request->input(['_token']));
 
 		// adding new Player
 		$player = new Player();
@@ -51,15 +51,15 @@ class GameController extends Controller
 			$player->possible_dis = 1;
 		}
 
-		$player->start = $currentTime->toDateTimeString();
+		$player->start = $currentTime;
 		$player->safety_token = $encryptedToken;
 		$player->save();
 		return $encryptedToken;
 	}
 	function end(Request $request){
+		$currentTime = round(microtime(true),4);
 		$extraToken = $request->et;
-		$newToken = hash("md5",$request->input(['_token']).$request->getClientIp());
-		$currentTime = Carbon::now();
+		$newToken = Hash::make($request->input(['_token']).$request->getClientIp().$request->ti);
 
 		// finding playing player
 		if(Player::where([['safety_token',$extraToken],['surname',null]])->count() === 1){
@@ -78,7 +78,7 @@ class GameController extends Controller
 		// check foul play
 		if($currentPlayer->possible_dis === 1 ||
 			$currentPlayer->safety_token !== $extraToken ||
-			$extraToken !== hash("md5",$request->getClientIp().$request->input(['_token'])) ||
+			!Hash::check($request->getClientIp().$request->input(['_token']), $extraToken) ||
 			$request->ip !== $request->getClientIp())
 		{
 			$poss_dis = 1;
@@ -87,9 +87,9 @@ class GameController extends Controller
 			$poss_dis = 0;
 		}
 
-		// updating player with the IP address
+		// updating player's end time
 		$currentPlayer->update([
-			'end' => $currentTime->toDateTimeString(),
+			'end' => $currentTime,
 			'safety_token' => $newToken,
 			'possible_dis' => $poss_dis
 		]);
@@ -97,10 +97,8 @@ class GameController extends Controller
 	}
 
 	function add_player(Request $request){
-		// add player info to IP
+		// check player info
 		$request->validate([
-			'time' => 'integer|required',
-			'ip' => 'ip|max:255|required',
 			'first_name' => 'string|max:255|required',
 			'surname' => 'string|max:255|required',
 			'email' => 'email|max:255|required',
@@ -108,7 +106,61 @@ class GameController extends Controller
 			'postcode' => 'alpha_num|max:100|required',
 			'city' => 'string|max:255|required',
 		]);
+		$extraToken = $request->et;
+
+		//player exists
+		if(Player::where([['safety_token',$extraToken],['surname',null]])->count() === 1){
+			$currentPlayer = Player::where([['safety_token',$extraToken],['surname',null]])->first();
+		}
+		elseif(Player::where([['ip',$request->getClientIp()],['surname',null]])->count() === 1){
+			$currentPlayer = Player::where([['ip',$request->getClientIp()],['surname',null]])->first();
+		}
+		else{
+			$possible_dis = 1;
+			$newPlayer = new Player();
+			$newPlayer->ip = $request->getClientIp();
+			$newPlayer->possible_dis = 1;
+			$currentPlayer = $newPlayer->save();
+		}
+
+		// standard possible_disqualification check
+		if($currentPlayer->possible_dis === 1 ||
+			$currentPlayer->safety_token !== $extraToken ||
+			!Hash::check($request->input(['_token']).$request->getClientIp().$request->time,$extraToken) ||
+			$request->ip !== $request->getClientIp())
+		{
+			$possible_dis = 1;
+		}
+		else{
+			$possible_dis = 0;
+		}
 
 
+		// something wrong (possible not users fault) => there seems to have gone something wrong retry
+//		if($currentPlayer->start === null ||
+//		$currentPlayer->end === null //||
+//			 ){
+//
+//		}
+
+//		return ($request->time/10)." :time and diff: ". round($currentPlayer->end - $currentPlayer->start,4);
+
+		// update player info
+		$currentPlayer->update([
+			'surname' => $request->surname,
+			'first_name' => $request->first_name,
+			'email' => $request->email,
+			'adres' => $request->adres,
+			'postcode' => $request->postcode,
+			'city' => $request->city,
+			'time' => $request->time,
+		]);
+
+		// outcome all ok -> friend invite
+
+		$time_comparison = ($request->time/10)." :time and diff: ". round($currentPlayer->end - $currentPlayer->start,4);
+		return redirect(route('play'))->with("diff",$time_comparison);
+
+//		return $currentPlayer;
 	}
 }

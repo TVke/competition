@@ -9,6 +9,9 @@
 			<div id="msg"><p>Gefeliciteerd! Je kan de afbeelding volledig zien.</p><p>Vul je gegevens in en maak kans op een iPhone X!</p></div>
 		</div>
 	</section>
+	@if(session('diff'))
+		<p class="heading-3 var-center">{{ session('diff') }}</p>
+		@endif
 	<form action="{{ route('update_user') }}" method="post" class="form">
 		{{ csrf_field() }}
 		{{ method_field('PUT') }}
