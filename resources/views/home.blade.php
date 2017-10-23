@@ -1,12 +1,13 @@
 @extends('layout')
 @section('content')
+	<h2 class="heading-1 var-center">{{ __('app.price') }}</h2>
 	<section class="info-block var-medium var-space-on-bottom">
 		<p class="body-text var-center">{{ __('app.win-information') }}</p>
 		<p class="body-text var-center">{{ __('app.game-information') }}</p>
 	</section>
 
 	<a class="button var-center var-call-to-action" href="{{ route('play') }}">{{ __('app.call-to-action') }}</a>
-	<a class="button var-center var-action-sub" href="{{ route('rules') }}">{{ __('app.rules') }}</a>
+	<a class="button var-center var-action-sub" href="{{ route('rules') }}">{{ __('app.rules-button') }}</a>
 	<section class="info-block var-small var-space">
 		@if(count($winners) > 0)
 			<h3 class="heading-3 var-underline">{{ __('app.winners-title') }}</h3>

@@ -135,16 +135,18 @@ class GameController extends Controller
 			$possible_dis = 0;
 		}
 
+		$serverTime = round($currentPlayer->end - $currentPlayer->start,4);
+		$netwerkErrorInSeconds = 3;
 
-		// something wrong (possible not users fault) => there seems to have gone something wrong retry
-//		if($currentPlayer->start === null ||
-//		$currentPlayer->end === null //||
-//			 ){
-//
-//		}
+		// something wrong (possible not users fault) => something wrong, retry
+		if($currentPlayer->start === null ||
+			$currentPlayer->end === null ||
+			$serverTime < ($request->time/10) ||
+			$serverTime >= (($request->time/10)+$netwerkErrorInSeconds) ){
+			return redirect(route('play'))->with("status","retry");
+		}
 
-//		return ($request->time/10)." :time and diff: ". round($currentPlayer->end - $currentPlayer->start,4);
-
+		$time = round($request->time/10,1);
 		// update player info
 		$currentPlayer->update([
 			'surname' => $request->surname,
@@ -153,14 +155,11 @@ class GameController extends Controller
 			'adres' => $request->adres,
 			'postcode' => $request->postcode,
 			'city' => $request->city,
-			'time' => $request->time,
+			'time' => $time,
+			'possible_dis' => $possible_dis,
 		]);
 
 		// outcome all ok -> friend invite
-
-		$time_comparison = ($request->time/10)." :time and diff: ". round($currentPlayer->end - $currentPlayer->start,4);
-		return redirect(route('play'))->with("diff",$time_comparison);
-
-//		return $currentPlayer;
+		return redirect(route('play'))->with("status","ok");
 	}
 }

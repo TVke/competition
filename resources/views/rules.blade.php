@@ -1,12 +1,9 @@
 @extends('layout')
 @section('content')
+	<h2 class="heading-1 var-center">{{ __('app.price') }}</h2>
 	<section class="info-block">
 		<h2 class="heading-2">spelregels</h2>
-		<p class="body-text">Beweeg over de bollen in het spel tot ze tot de kleinst mogelijke grootte hebben en je dus de volledige afbeelding ziet.
-			Dit hoort te gebeuren in een zo kort mogelijke tijd om kans te maken.
-			Wie dit spel het snelste uitspeelt krijgt op het einde van de periode een iPhone X toegestuurd.
-			In geval van een ex-aequo wint de deelnemer die als eerste deze score heeft bereikt.
-			MediaMarkt heeft ten alle tijden het recht een speler te diskwalificeren als er een vermoeden van vals spel is.</p>
+		<p class="body-text">{{ __('app.rules') }}</p>
 		<ul class="list var-dash var-space-on-top">
 			@php
 				setlocale(LC_TIME, 'nl_BE');

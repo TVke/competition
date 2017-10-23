@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
 	<meta charset="UTF-8">
-	<title>{{ __('app.title') }}</title>
+	<title>{{ __('app.price') }}</title>
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 </head>
@@ -20,7 +20,6 @@
 	</section>
 	@endauth
 </header>
-<h2 class="heading-1 var-center">{{ __('app.title') }}</h2>
 @yield('content')
 <footer>
 	<p class="copyright">© {{ date("Y") }} MediaMarkt</p>
