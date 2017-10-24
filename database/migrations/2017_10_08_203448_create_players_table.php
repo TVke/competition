@@ -24,7 +24,7 @@ class CreatePlayersTable extends Migration
             $table->ipAddress('ip');
             $table->decimal('start',15,4)->nullable()->default(null);
             $table->decimal('end',15,4)->nullable()->default(null);
-            $table->decimal('time',5,1)->nullable()->default(null);
+            $table->integer('time')->nullable()->default(null);
             $table->boolean('possible_dis')->default(0);
             $table->boolean('disqualified')->default(0);
             $table->string('safety_token')->default("");

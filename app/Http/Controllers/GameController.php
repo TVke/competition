@@ -99,6 +99,7 @@ class GameController extends Controller
 	function add_player(Request $request){
 		// check player info
 		$request->validate([
+			'time' => 'integer|required',
 			'first_name' => 'string|max:255|required',
 			'surname' => 'string|max:255|required',
 			'email' => 'email|max:255|required',
@@ -146,7 +147,6 @@ class GameController extends Controller
 			return redirect(route('play'))->with("status","retry");
 		}
 
-		$time = round($request->time/10,1);
 		// update player info
 		$currentPlayer->update([
 			'surname' => $request->surname,
@@ -155,7 +155,7 @@ class GameController extends Controller
 			'adres' => $request->adres,
 			'postcode' => $request->postcode,
 			'city' => $request->city,
-			'time' => $time,
+			'time' => $request->time,
 			'possible_dis' => $possible_dis,
 		]);
 

@@ -10,6 +10,11 @@
 			<a class="button" href="{{ route('play') }}">{{ __('app.retry-button') }}</a>
 		@endif
 	@else
+		@if($errors->any())
+			@foreach($errors as $error)
+				{{ $error }}
+			@endforeach
+		@endif
 		<h2 class="heading-1 var-center">{{ __('app.price') }}</h2>
 		<p class="body-text var-center">{{ __('app.fairness-warning') }}</p>
 		<time>{{ old('time','00:00,0') }}</time>
