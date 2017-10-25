@@ -12,13 +12,22 @@ return [
     */
 
     // general
+	'company-name' => 'MediaMarkt',
+	'logout-button' => 'Uitloggen',
+	'login-title' => 'Inloggen',
+	'login-user-label' => 'Gebruiker',
+	'login-password-label' => 'Wachtwoord',
+	'login-remember-label' => 'Onthoud me',
+	'login-button' => 'Inloggen',
 	'price' => 'Win een iPhone X!',
+
 	// homepage
 	'win-information' => 'Speel je het spel in de snelste tijd uit? Dan maak je kans op een iPhone X.',
 	'game-information' => 'Beweeg over de bollen om ze te splitsen. Splits alle bollen tot de kleinst mogelijke grootte en je wint. ',
     'call-to-action' => 'Speel nu!',
 	'winners-title' => 'Vorige winnaars:',
 	'periods-title' => 'Je kan nog meedoen tot :end.',
+
 	// rules page
 	'rules-button' => 'Wedstrijdregelement',
 	'rules' => 'Beweeg over de bollen in het spel tot ze tot de kleinst mogelijke grootte hebben en je dus de volledige afbeelding ziet.
@@ -27,12 +36,14 @@ return [
 			In geval van een ex-aequo wint de deelnemer die als eerste deze score heeft bereikt.
 			MediaMarkt heeft ten alle tijden het recht een speler te diskwalificeren als er een vermoeden van vals spel is.',
 	'periods-body' => 'periode :number: van :start tot :end',
+
 	// game text
 	'fairness-warning' => 'Let goed op, er wordt vaak over een kleine bol gekeken!',
 	'start-button' => 'Start',
 	'js-error' => 'Javascript moet aanstaan.',
 	'win-message' => 'Gefeliciteerd! Je kan de afbeelding volledig zien.',
 	'win-action-message' => 'Vul je gegevens in en maak kans op een iPhone X!',
+
 	// player form
 	'first-name-label' => 'voornaam',
 	'surname-label' => 'achternaam',
@@ -41,7 +52,31 @@ return [
 	'postalcode-label' => 'postcode',
 	'city-label' => 'gemeente / stad',
 	'submit-button' => 'neem deel',
+
 	// after submition
 	'valid-title' => 'Gefeliciteerd, Wil je een extra kans?',
-	'retry-button' => 'probeer nog eens',
+	'friend-invite-info' => 'Als je vriend(in) heeft gespeeld krijg je een mail waardoor je een extra kans krijgt',
+	'friend-invite-label' => 'nodig een vriend uit',
+	'friend-invite-button' => 'Nodig uit',
+
+	'retry-info' => 'We hebben niet alles correct ontvangen, dus krijg je een extra kans',
+	'retry-button' => 'Speel nog eens',
+
+	// admin page
+	'settings-title' => 'Wedstrijd Instellingen',
+	'table-first-name' => 'voornaam',
+	'table-surname' => 'achternaam',
+	'table-email' => 'email',
+	'table-adres' => 'adres',
+	'table-postalcode' => 'postcode',
+	'table-city' => 'gemeente',
+	'table-ip' => 'ip',
+	'table-time' => 'tijd',
+	'table-server-time' => 'servertijd',
+	'table-friend' => 'vriend',
+
+	'empty-table' => 'Er hebben nog geen mensen meegespeeld.',
+	'period-label' => 'Periode',
+
+	'edit-button' => 'Bijwerken',
 ];

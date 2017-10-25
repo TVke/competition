@@ -1,9 +1,9 @@
 @import "fonts";
 @import "colors";
 // fonts
-$title-font: "mm-text-bold",sans-serif;
-$action-font: "mm-headline",sans-serif;
-$body-font: "mm-text-regular",sans-serif;
+$title-font: "MM Text Pro WebTT Bold","mm-text-bold",sans-serif;
+$action-font: "MM Headline Pro WebTT Regulier","mm-headline",sans-serif;
+$body-font: "MM Text Pro WebTT Regulier","mm-text-regular",sans-serif;
 
 // colors - brand
 $brand-primary: #df0000;
@@ -13,3 +13,6 @@ $brand-secondary: $neutral-0;
 $brand-secondary-contrast: $neutral-10;
 $brand-terciery: $neutral-10;
 $brand-terciery-contrast: $neutral-0;
+
+$band-negative-validation: $brand-primary;
+$band-positive-validation: #64AA00;

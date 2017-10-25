@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Period;
 use App\Player;
-use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class GameController extends Controller
 {
@@ -90,6 +90,7 @@ class GameController extends Controller
 		// updating player's end time
 		$currentPlayer->update([
 			'end' => $currentTime,
+			'time' => intval($request->ti),
 			'safety_token' => $newToken,
 			'possible_dis' => $poss_dis
 		]);
@@ -97,15 +98,17 @@ class GameController extends Controller
 	}
 
 	function add_player(Request $request){
+//		return $request;
 		// check player info
+
 		$request->validate([
-			'time' => 'integer|required',
-			'first_name' => 'string|max:255|required',
-			'surname' => 'string|max:255|required',
-			'email' => 'email|max:255|required',
-			'adres' => 'string|max:255|required',
-			'postcode' => 'alpha_num|max:100|required',
-			'city' => 'string|max:255|required',
+//			'time' => 'required|integer',
+			'first_name' => 'required|string|max:255',
+			'surname' => 'required|string|max:255',
+			'email' => 'required|email|max:255',
+			'adres' => 'required|string|max:255',
+			'postalcode' => 'required|alpha_num|max:10',
+			'city' => 'required|string|max:255',
 		]);
 		$extraToken = $request->et;
 
@@ -117,34 +120,23 @@ class GameController extends Controller
 			$currentPlayer = Player::where([['ip',$request->getClientIp()],['surname',null]])->first();
 		}
 		else{
-			$possible_dis = 1;
-			$newPlayer = new Player();
-			$newPlayer->ip = $request->getClientIp();
-			$newPlayer->possible_dis = 1;
-			$currentPlayer = $newPlayer->save();
+			$currentPlayer = new Player();
+			$currentPlayer->ip = $request->getClientIp();
+			$currentPlayer->possible_dis = 1;
+			$currentPlayer->save();
 		}
 
 		// standard possible_disqualification check
 		if($currentPlayer->possible_dis === 1 ||
 			$currentPlayer->safety_token !== $extraToken ||
 			!Hash::check($request->input(['_token']).$request->getClientIp().$request->time,$extraToken) ||
-			$request->ip !== $request->getClientIp())
+			$request->ip !== $request->getClientIp()
+		)
 		{
 			$possible_dis = 1;
 		}
 		else{
 			$possible_dis = 0;
-		}
-
-		$serverTime = round($currentPlayer->end - $currentPlayer->start,4);
-		$netwerkErrorInSeconds = 3;
-
-		// something wrong (possible not users fault) => something wrong, retry
-		if($currentPlayer->start === null ||
-			$currentPlayer->end === null ||
-			$serverTime < ($request->time/10) ||
-			$serverTime >= (($request->time/10)+$netwerkErrorInSeconds) ){
-			return redirect(route('play'))->with("status","retry");
 		}
 
 		// update player info
@@ -153,13 +145,50 @@ class GameController extends Controller
 			'first_name' => $request->first_name,
 			'email' => $request->email,
 			'adres' => $request->adres,
-			'postcode' => $request->postcode,
+			'postalcode' => $request->postalcode,
 			'city' => $request->city,
 			'time' => $request->time,
-			'possible_dis' => $possible_dis,
+			'possible_dis' => $possible_dis
 		]);
 
-		// outcome all ok -> friend invite
-		return redirect(route('play'))->with("status","ok");
+		$serverTime = round($currentPlayer->end - $currentPlayer->start,1);
+		$networkErrorInSeconds = 5;
+
+		// something wrong (possible not users fault) => something wrong, retry
+		if($currentPlayer->start === null ||
+			$currentPlayer->end === null ||
+			$serverTime < ($request->time/10) //||
+//			($serverTime >= (($request->time/10)+$networkErrorInSeconds))  // to check in the admin the general network error
+			){
+			return redirect(route('play'))->with("status","retry");
+		}else{
+			// outcome all ok -> friend invite
+			return redirect(route('play'))->with("status","ok");
+		}
+	}
+
+	function friend_invite(Request $request){
+		return "friend mail";
+	}
+
+	function add_fb_player(){
+		$user = Socialite::with('facebook')->user();
+		// OAuth Two Providers
+//		$token = $user->token;
+
+		// OAuth One Providers
+		$token = $user->token;
+		$tokenSecret = $user->tokenSecret;
+
+		// All Providers
+		$user->getId();
+		$user->getNickname();
+		$user->getName();
+		$user->getEmail();
+		$user->getAvatar();
+	}
+
+	function fb(){
+		return Socialite::with('facebook')->redirect();
 	}
 }

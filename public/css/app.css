@@ -19,7 +19,7 @@
 
 body {
   background: white;
-  font-family: "mm-text-regular", sans-serif; }
+  font-family: "MM Text Pro WebTT Regulier", "mm-text-regular", sans-serif; }
 
 header {
   background: #df0000;
@@ -73,7 +73,7 @@ header {
   color: black;
   border-radius: 3px;
   text-decoration: none;
-  font-family: "mm-text-regular", sans-serif;
+  font-family: "MM Text Pro WebTT Regulier", "mm-text-regular", sans-serif;
   font-size: 1em; }
   .button.var-center {
     text-align: center;
@@ -130,18 +130,18 @@ header {
     color: white; }
 
 .heading-1 {
-  font-family: "mm-text-bold", sans-serif;
+  font-family: "MM Text Pro WebTT Bold", "mm-text-bold", sans-serif;
   font-size: 3em; }
   .heading-1.var-center {
     text-align: center;
     padding: 10px; }
 
 .heading-2 {
-  font-family: "mm-text-bold", sans-serif;
+  font-family: "MM Text Pro WebTT Bold", "mm-text-bold", sans-serif;
   padding: 5px; }
 
 .heading-3 {
-  font-family: "mm-text-bold", sans-serif;
+  font-family: "MM Text Pro WebTT Bold", "mm-text-bold", sans-serif;
   padding: 5px; }
   .heading-3.var-space-on-top {
     padding-top: 30px; }
@@ -275,10 +275,19 @@ time {
   .form .label {
     display: block;
     padding: 10px 0 5px; }
+    .form .label.var-center {
+      text-align: center; }
   .form .input {
     font-size: 1em;
     padding: 5px;
     width: calc(100% - 13px); }
+    .form .input.var-checkbox {
+      display: block;
+      float: left;
+      width: 25px;
+      margin: 3px  0; }
+    .form .input.var-center {
+      text-align: center; }
   .form .form-group {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -300,6 +309,49 @@ time {
               flex: 1; }
       .form .form-group .input:first-child {
         margin-right: 10px; }
+  .form .error {
+    color: #df0000; }
+
+.table {
+  margin: 20px auto;
+  border-spacing: 0; }
+  .table .table-head tr.var-possible-dis, .table .table-body tr.var-possible-dis {
+    background: #df0000; }
+  .table .table-head th, .table .table-head td, .table .table-body th, .table .table-body td {
+    padding: 5px 10px;
+    border-right: 1px solid #4d4d4d;
+    border-bottom: 1px solid #4d4d4d; }
+    .table .table-head th:first-child, .table .table-head td:first-child, .table .table-body th:first-child, .table .table-body td:first-child {
+      border-left: 1px solid #4d4d4d; }
+  .table .table-head {
+    background: black;
+    color: white; }
+
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 20px;
+  list-style: none;
+  text-align: center; }
+  .pagination li {
+    margin: 5px; }
+    .pagination li a, .pagination li span {
+      padding: 5px 10px 3px; }
+    .pagination li a {
+      text-decoration: none;
+      color: black; }
+      .pagination li a:hover {
+        border-bottom: 2px solid #df0000; }
+  .pagination .active, .pagination .disabled {
+    color: #b3b3b3; }
+  .pagination::after {
+    content: "";
+    clear: both;
+    display: block; }
 
 footer {
   background: black;
@@ -307,7 +359,7 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 206px;
+  width: 220px;
   text-align: center; }
 
 .copyright {

@@ -340,12 +340,26 @@ time{
 	.label{
 		display: block;
 		padding: 10px 0 5px;
+
+		&.var-center{
+			text-align: center;
+		}
 	}
 
 	.input{
 		font-size: 1em;
 		padding: 5px;
 		width: calc(100% - 13px);
+
+		&.var-checkbox{
+			display: block;
+			float: left;
+			width: 25px;
+			margin: 3px  0;
+		}
+		&.var-center{
+			text-align: center;
+		}
 	}
 	.form-group{
 		display: flex;
@@ -370,13 +384,80 @@ time{
 			}
 		}
 	}
+
+	.error{
+		color: $band-negative-validation;
+	}
+}
+
+// settings
+
+.table{
+	margin: 20px auto;
+	border-spacing: 0;
+
+	.table-head, .table-body{
+
+		tr{
+			&.var-possible-dis{
+				background: $brand-primary;
+			}
+		}
+
+		th, td{
+			padding: 5px 10px;
+			border-right: 1px solid $neutral-7;
+			border-bottom: 1px solid $neutral-7;
+
+			&:first-child{
+				border-left: 1px solid $neutral-7;
+			}
+		}
+	}
+	.table-head{
+		background: $brand-terciery;
+		color: $brand-terciery-contrast;
+	}
+}
+.pagination{
+	display: flex;
+	justify-content: center;
+	margin: 20px;
+	list-style: none;
+	text-align: center;
+
+	li{
+		margin: 5px;
+
+		a, span{
+			padding: 5px 10px 3px;
+		}
+		a{
+			text-decoration: none;
+			color: $brand-secondary-contrast;
+
+			&:hover{
+				border-bottom: 2px solid $brand-primary;
+			}
+		}
+	}
+
+	.active, .disabled{
+		color: $neutral-3;
+	}
+
+	&::after{
+		content: "";
+		clear: both;
+		display: block;
+	}
 }
 
 footer{
 	background: $neutral-10;
 	margin: 30px auto 0;
 	display: flex;
-	width: 206px;
+	width: 220px;
 	text-align: center;
 }
 

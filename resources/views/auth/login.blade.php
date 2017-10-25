@@ -1,69 +1,20 @@
-@extends('layouts.app')
+@extends('layout')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="username" class="col-md-4 control-label">Username</label>
-
-                            <div class="col-md-6">
-                                <input id="name" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+	<h1 class="heading-1 var-center">{{ __('app.login-title') }}</h1>
+	<form action="{{ route('login') }}" method="post" class="form">
+		{{ csrf_field() }}
+		<label for="name" class="label{{ $errors->has('name') ? ' error' : '' }}">{{ __('app.login-user-label') }}</label>
+		<input id="name" name="name" class="input" value="{{ old('name') }}" required autofocus>
+		@if ($errors->has('name'))
+			<p class="error">{{ $errors->first('name') }}</p>
+		@endif
+		<label for="password" class="label{{ $errors->has('password') ? ' error' : '' }}">{{ __('app.login-password-label') }}</label>
+		<input id="password" type="password" name="password" class="input" required>
+		@if ($errors->has('password'))
+			<p class="error">{{ $errors->first('password') }}</p>
+		@endif
+		<label class="label{{ $errors->has('remember') ? ' error' : '' }}"><input type="checkbox" name="remember" class="input var-checkbox" {{ old('remember') ? 'checked' : '' }}> {{ __('app.login-remember-label') }}</label>
+		<input type="submit" value="{{ __('app.login-button') }}" class="button var-submit">
+	</form>
 @endsection
