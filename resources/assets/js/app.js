@@ -275,7 +275,7 @@ var koala={version:'1.8.2'};
 			data += "&et="+endToken+"&ti="+currentTime;
 		}
 
-		xhttp.open("POST","/" + to + "");
+		xhttp.open("POST",location.href.substr(0,location.href.length - 5) + "/" + to + "");
 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhttp.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 		xhttp.setRequestHeader("X-XSRF-TOKEN", document.cookie.substr(11));
