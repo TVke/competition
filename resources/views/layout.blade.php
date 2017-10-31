@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>{{ __('app.price') }}</title>
 	<meta name="viewport" content="width=device-width">
-	<link rel="stylesheet" href="{{ asset(env('app.url').'/css/app.css') }}">
+	<link rel="stylesheet" href="{{ asset(env('APP_URL').'/css/app.css') }}">
 </head>
 <body>
 <header>

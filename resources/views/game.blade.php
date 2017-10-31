@@ -88,8 +88,8 @@
 			</section>
 		</form>
 	@endif
-	<script src={{ asset('/js/d3.min.js') }}></script>
-	<script src="{{ asset('/js/app.js') }}"></script>
+	<script src={{ asset(env('APP_URL').'/js/d3.min.js') }}></script>
+	<script src="{{ asset(env('APP_URL').'/js/app.js') }}"></script>
 	{{--<div id="fb-root"></div>--}}
 	{{--<script>(function(d, s, id) {--}}
 			{{--var js, fjs = d.getElementsByTagName(s)[0];--}}
