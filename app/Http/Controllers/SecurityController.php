@@ -92,7 +92,7 @@ class SecurityController extends Controller
 		}
 
 		// standard possible_disqualification check
-		if($currentPlayer->possible_dis === 1 ||
+		if(//$currentPlayer->possible_dis === 1 ||
 			$currentPlayer->safety_token !== $extraToken ||
 			!Hash::check($request->input(['_token']).$request->getClientIp().$request->time,$extraToken) ||
 			$request->ip !== $request->getClientIp()
@@ -127,8 +127,8 @@ class SecurityController extends Controller
 		){
 			return redirect(route('play'))->with("status","retry");
 		}
-			// outcome all ok -> friend invite
-			return redirect(route('play'))->with("status","ok");
+		// outcome all ok -> friend invite
+		return redirect(route('play'))->with("status","ok");
 	}
 
 
