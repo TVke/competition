@@ -20,6 +20,11 @@
 			@php
 				setlocale(LC_TIME, 'nl_BE');
 			@endphp
+			@if(isset($end_date))
 		<h3 class="heading-3 var-space-on-top var-center">{{ __('app.periods-title',['end' => $end_date->formatLocalized('%d %b %Y')]) }}</h3>
+			@else
+				<h3 class="heading-3 var-space-on-top var-center">{{ __('app.periods-ended') }}</h3>
+			@endif
+
 	</section>
 @endsection

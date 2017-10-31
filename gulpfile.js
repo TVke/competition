@@ -3,8 +3,8 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const pump = require('pump');
-var uglify = require('gulp-uglify');
-var imageOptim = require('gulp-imageoptim2');
+const uglify = require('gulp-uglify');
+const imagemin = require('gulp-imagemin');
 
 gulp.task('default', ['sass','js','image','favicons']);
 gulp.task('watch', ['sass:watch','js:watch']);
@@ -49,7 +49,7 @@ gulp.task('js:watch', function () {
 
 gulp.task('image', function () {
 	return gulp.src('resources/assets/img/**/*')
-	// .pipe(imageOptim.optimize())
+		.pipe(imagemin({progressive: true}))
 		.pipe(gulp.dest('public/img'));
 });
 gulp.task('image:watch', function () {

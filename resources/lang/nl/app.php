@@ -27,6 +27,7 @@ return [
     'call-to-action' => 'Speel nu!',
 	'winners-title' => 'Vorige winnaars:',
 	'periods-title' => 'Je kan nog meedoen tot :end.',
+	'periods-ended' => 'De wedstrijd is afgelopen, je kan niet meer meedoen.',
 
 	// rules page
 	'rules-button' => 'Wedstrijdregelement',
