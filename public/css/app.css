@@ -186,6 +186,12 @@ header {
   color: #666666; }
   .body-text.var-center {
     text-align: center; }
+  .body-text.var-start {
+    display: none;
+    position: absolute;
+    z-index: 4;
+    top: 200px;
+    color: black; }
 
 time {
   display: block;
@@ -232,7 +238,13 @@ time {
       background: black;
       display: block;
       z-index: 0;
+      width: 256px;
+      height: 256px;
       padding-right: 1px; }
+      @media all and (min-width: 512px) {
+        #game #dots svg {
+          width: 512px;
+          height: 512px; } }
     @media all and (min-width: 512px) {
       #game #dots {
         width: 512px;
@@ -247,6 +259,8 @@ time {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center; }
+    #game.begin .body-text {
+      display: block; }
     #game.begin .button {
       display: block; }
     #game.begin #dots {
@@ -313,8 +327,9 @@ time {
     color: #df0000; }
 
 .table {
-  margin: 20px auto;
-  border-spacing: 0; }
+  margin: 20px;
+  border-spacing: 0;
+  width: calc(100% - 40px); }
   .table .table-head tr.var-possible-dis, .table .table-body tr.var-possible-dis {
     background: #df0000; }
   .table .table-head th, .table .table-head td, .table .table-body th, .table .table-body td {

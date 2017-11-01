@@ -16,11 +16,18 @@
 			<h1 class="heading-1 var-center">{{ __('app.retry-info') }}</h1>
 			<a class="button var-center" href="{{ route('play') }}">{{ __('app.retry-button') }}</a>
 		@endif
+		{{--@if(session('status') === "retry")--}}
+			{{--<h1 class="heading-1 var-center">{{ __('app.retry-info') }}</h1>--}}
+			{{--<a class="button var-center" href="{{ route('play') }}">{{ __('app.retry-button') }}</a>--}}
+		{{--@endif--}}
 	@else
 		<h2 class="heading-1 var-center">{{ __('app.price') }}</h2>
 		<p class="body-text var-center">{{ __('app.fairness-warning') }}</p>
-		<time>00:00,0</time>
+		<time>{{ timeFormat(old('time',0)) }} </time>
+		{{--00:00,0--}}
+		{{--old('time','0')--}}
 		<section id="game" class="begin">
+			<p class="body-text var-center var-start">{{ __('app.start-text') }}</p>
 			<button id="start" class="button var-call-to-action var-center var-start">{{ __('app.start-button') }}</button>
 			<div id="dots">
 				<noscript>{{ __('app.js-error') }}</noscript>
@@ -35,20 +42,23 @@
 			{{ method_field('PUT') }}
 			<input type="hidden" name="time" value="{{ old('time') }}">
 			<input type="hidden" name="ip" value="{{ $ip }}">
+			@if(old('et'))
+				<input type="hidden" name="et" value="{{ old('et') }}">
+			@endif
 			<section class="form-group">
-				<label for="first-name" class="label{{ $errors->has('first_name') ? ' error' : '' }}">{{ __('app.first-name-label') }}*</label>
-				<label for="surname" class="label{{ $errors->has('surname') ? ' error' : '' }}">{{ __('app.surname-label') }}*</label>
+				<label for="first-name" class="label{{ $errors->has('voornaam') ? ' error' : '' }}">{{ __('app.first-name-label') }}*</label>
+				<label for="surname" class="label{{ $errors->has('achternaam') ? ' error' : '' }}">{{ __('app.surname-label') }}*</label>
 			</section>
 			<section class="form-group">
-				<input name="first_name" class="input" id="first-name" value="{{ old('first_name') }}" required>
-				<input name="surname" class="input" id="surname" value="{{ old('surname') }}" required>
+				<input name="voornaam" class="input" id="first-name" value="{{ old('voornaam') }}" required>
+				<input name="achternaam" class="input" id="surname" value="{{ old('achternaam') }}" required>
 			</section>
 			<section class="form-group">
-				@if ($errors->has('first_name'))
-					<p class="error">{{ $errors->first('first_name') }}</p>
+				@if ($errors->has('voornaam'))
+					<p class="error">{{ $errors->first('voornaam') }}</p>
 				@endif
-				@if ($errors->has('surname'))
-					<p class="error">{{ $errors->first('surname') }}</p>
+				@if ($errors->has('achternaam'))
+					<p class="error">{{ $errors->first('achternaam') }}</p>
 				@endif
 			</section>
 			<label for="email" class="label{{ $errors->has('email') ? ' error' : '' }}">{{ __('app.email-label') }}*</label>
@@ -62,19 +72,19 @@
 				<p class="error">{{ $errors->first('adres') }}</p>
 			@endif
 			<section class="form-group">
-				<label for="postalcode" class="label{{ $errors->has('postalcode') ? ' error' : '' }}">{{ __('app.postalcode-label') }}*</label>
-				<label for="city" class="label{{ $errors->has('city') ? ' error' : '' }}">{{ __('app.city-label') }}*</label>
+				<label for="postalcode" class="label{{ $errors->has('postcode') ? ' error' : '' }}">{{ __('app.postalcode-label') }}*</label>
+				<label for="city" class="label{{ $errors->has('gemeente') ? ' error' : '' }}">{{ __('app.city-label') }}*</label>
 			</section>
 			<section class="form-group">
-				<input name="postalcode" class="input" id="postalcode" value="{{ old('postalcode') }}" required>
-				<input name="city" class="input" id="city" value="{{ old('city') }}" required>
+				<input name="postcode" class="input" id="postalcode" value="{{ old('postcode') }}" required>
+				<input name="gemeente" class="input" id="city" value="{{ old('gemeente') }}" required>
 			</section>
 			<section class="form-group">
-				@if ($errors->has('postalcode'))
-					<p class="error">{{ $errors->first('postalcode') }}</p>
+				@if ($errors->has('postcode'))
+					<p class="error">{{ $errors->first('postcode') }}</p>
 				@endif
-				@if ($errors->has('city'))
-					<p class="error">{{ $errors->first('city') }}</p>
+				@if ($errors->has('gemeente'))
+					<p class="error">{{ $errors->first('gemeente') }}</p>
 				@endif
 			</section>
 			<section class="form-group">

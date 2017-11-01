@@ -17,7 +17,7 @@ class SecurityController extends Controller
 		$player->ip = $request->getClientIp();
 
 		// checks of foul play
-		if($request->ip !== $request->getClientIp() || !$request->is('start')){
+		if(!$request->is('start')){
 			$player->possible_dis = 1;
 		}
 
@@ -49,8 +49,8 @@ class SecurityController extends Controller
 		// check foul play
 		if($currentPlayer->possible_dis === 1 ||
 			$currentPlayer->safety_token !== $extraToken ||
-			!Hash::check($request->getClientIp().$request->input(['_token']), $extraToken) ||
-			$request->ip !== $request->getClientIp())
+			!Hash::check($request->getClientIp().$request->input(['_token']), $extraToken)
+		)
 		{
 			$poss_dis = 1;
 		}
@@ -68,13 +68,14 @@ class SecurityController extends Controller
 	function add_player(Request $request){
 		// check player info
 		$request->validate([
-			'first_name' => 'required|string|max:255',
-			'surname' => 'required|string|max:255',
-			'email' => 'required|email|max:255',
-			'adres' => 'required|string|max:255',
-			'postalcode' => 'required|alpha_num|max:10',
-			'city' => 'required|string|max:255',
+			'voornaam' => 'required|string|min:2|max:255',
+			'achternaam' => 'required|string|min:2|max:255',
+			'email' => 'required|email|min:5|max:255',
+			'adres' => 'required|string|min:2|max:255',
+			'postcode' => 'required|alpha_num|min:4|max:6',
+			'gemeente' => 'required|string|min:2|max:255',
 		]);
+
 		$extraToken = $request->et;
 
 		// check if player exists
@@ -92,10 +93,9 @@ class SecurityController extends Controller
 		}
 
 		// standard possible_disqualification check
-		if(//$currentPlayer->possible_dis === 1 ||
+		if($currentPlayer->possible_dis === 1 ||
 			$currentPlayer->safety_token !== $extraToken ||
-			!Hash::check($request->input(['_token']).$request->getClientIp().$request->time,$extraToken) ||
-			$request->ip !== $request->getClientIp()
+			!Hash::check($request->input(['_token']).$request->getClientIp().$request->time,$extraToken)
 		)
 		{
 			$possible_dis = 1;
@@ -106,12 +106,12 @@ class SecurityController extends Controller
 
 		// update player info
 		$currentPlayer->update([
-			'surname' => $request->surname,
-			'first_name' => $request->first_name,
+			'surname' => $request->achternaam,
+			'first_name' => $request->voornaam,
 			'email' => $request->email,
 			'adres' => $request->adres,
-			'postalcode' => $request->postalcode,
-			'city' => $request->city,
+			'postalcode' => $request->postcode,
+			'city' => $request->gemeente,
 			'time' => $request->time,
 			'possible_dis' => $possible_dis
 		]);
@@ -132,24 +132,24 @@ class SecurityController extends Controller
 	}
 
 
-	function add_fb_player(){
-		$user = Socialite::with('facebook')->user();
-		// OAuth Two Providers
+//	function add_fb_player(){
+//		$user = Socialite::with('facebook')->user();
+//		// OAuth Two Providers
+////		$token = $user->token;
+//
+//		// OAuth One Providers
 //		$token = $user->token;
-
-		// OAuth One Providers
-		$token = $user->token;
-		$tokenSecret = $user->tokenSecret;
-
-		// All Providers
-		$user->getId();
-		$user->getNickname();
-		$user->getName();
-		$user->getEmail();
-		$user->getAvatar();
-	}
-
-	function fb(){
-		return Socialite::with('facebook')->redirect();
-	}
+//		$tokenSecret = $user->tokenSecret;
+//
+//		// All Providers
+//		$user->getId();
+//		$user->getNickname();
+//		$user->getName();
+//		$user->getEmail();
+//		$user->getAvatar();
+//	}
+//
+//	function fb(){
+//		return Socialite::with('facebook')->redirect();
+//	}
 }

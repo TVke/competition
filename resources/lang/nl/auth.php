@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Deze gegevens komen niet overeen met onze gegevens.',
-    'throttle' => 'Te vaak proberen inloggen. Probeer nog eens binnen :seconds seconden.',
+	'failed'   => 'Deze combinatie van e-mailadres en wachtwoord is niet geldig.',
+	'throttle' => 'Te veel mislukte loginpogingen. Probeer het over :seconds seconden nogmaals.',
 
 ];

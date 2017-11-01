@@ -40,6 +40,7 @@ return [
 
 	// game text
 	'fairness-warning' => 'Let goed op, er wordt vaak over een kleine bol gekeken!',
+	'start-text' => 'Beweeg om de bollen te verkleinen.',
 	'start-button' => 'Start',
 	'js-error' => 'Javascript moet aanstaan.',
 	'win-message' => 'Gefeliciteerd! Je kan de afbeelding volledig zien.',

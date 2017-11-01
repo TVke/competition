@@ -233,6 +233,13 @@ header{
 	&.var-center{
 		text-align: center;
 	}
+	&.var-start{
+		display: none;
+		position: absolute;
+		z-index: 4;
+		top: 200px;
+		color: $neutral-10;
+	}
 }
 
 // game
@@ -289,9 +296,16 @@ time{
 			background: $neutral-10;
 			display: block;
 			z-index: 0;
+			width: 256px;
+			height: 256px;
 
 			// pixel fix of background
 			padding-right: 1px;
+
+			@media all and (min-width:512px){
+				width: 512px;
+				height: 512px;
+			}
 		}
 
 		@media all and (min-width:512px){
@@ -304,6 +318,10 @@ time{
 		display: flex;
 		justify-content: center;
 		align-items: center;
+
+		.body-text{
+			display: block;
+		}
 
 		.button{
 			display: block;
@@ -393,8 +411,9 @@ time{
 // settings
 
 .table{
-	margin: 20px auto;
+	margin: 20px;
 	border-spacing: 0;
+	width: calc(100% - 40px);
 
 	.table-head, .table-body{
 
