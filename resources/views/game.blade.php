@@ -46,19 +46,19 @@
 				<input type="hidden" name="et" value="{{ old('et') }}">
 			@endif
 			<section class="form-group">
-				<label for="first-name" class="label{{ $errors->has('voornaam') ? ' error' : '' }}">{{ __('app.first-name-label') }}*</label>
-				<label for="surname" class="label{{ $errors->has('achternaam') ? ' error' : '' }}">{{ __('app.surname-label') }}*</label>
+				<label for="first-name" class="label{{ $errors->has('first_name') ? ' error' : '' }}">{{ __('app.first_name-label') }}*</label>
+				<label for="last_name" class="label{{ $errors->has('last_name') ? ' error' : '' }}">{{ __('app.last_name-label') }}*</label>
 			</section>
 			<section class="form-group">
-				<input name="voornaam" class="input" id="first-name" value="{{ old('voornaam') }}" required>
-				<input name="achternaam" class="input" id="surname" value="{{ old('achternaam') }}" required>
+				<input name="first_name" class="input" id="first-name" value="{{ old('first_name') }}" required>
+				<input name="last_name" class="input" id="last_name" value="{{ old('last_name') }}" required>
 			</section>
 			<section class="form-group">
-				@if ($errors->has('voornaam'))
-					<p class="error">{{ $errors->first('voornaam') }}</p>
+				@if ($errors->has('first_name'))
+					<p class="error">{{ $errors->first('first_name') }}</p>
 				@endif
-				@if ($errors->has('achternaam'))
-					<p class="error">{{ $errors->first('achternaam') }}</p>
+				@if ($errors->has('last_name'))
+					<p class="error">{{ $errors->first('last_name') }}</p>
 				@endif
 			</section>
 			<label for="email" class="label{{ $errors->has('email') ? ' error' : '' }}">{{ __('app.email-label') }}*</label>
@@ -66,25 +66,25 @@
 			@if ($errors->has('email'))
 				<p class="error">{{ $errors->first('email') }}</p>
 			@endif
-			<label for="adres" class="label{{ $errors->has('adres') ? ' error' : '' }}">{{ __('app.adres-label') }}*</label>
-			<input name="adres" class="input" id="adres" value="{{ old('adres') }}" required>
-			@if ($errors->has('adres'))
-				<p class="error">{{ $errors->first('adres') }}</p>
+			<label for="address" class="label{{ $errors->has('address') ? ' error' : '' }}">{{ __('app.address-label') }}*</label>
+			<input name="address" class="input" id="address" value="{{ old('address') }}" required>
+			@if ($errors->has('address'))
+				<p class="error">{{ $errors->first('address') }}</p>
 			@endif
 			<section class="form-group">
-				<label for="postalcode" class="label{{ $errors->has('postcode') ? ' error' : '' }}">{{ __('app.postalcode-label') }}*</label>
-				<label for="city" class="label{{ $errors->has('gemeente') ? ' error' : '' }}">{{ __('app.city-label') }}*</label>
+				<label for="postcode" class="label{{ $errors->has('postcode') ? ' error' : '' }}">{{ __('app.postcode-label') }}*</label>
+				<label for="city" class="label{{ $errors->has('city') ? ' error' : '' }}">{{ __('app.city-label') }}*</label>
 			</section>
 			<section class="form-group">
-				<input name="postcode" class="input" id="postalcode" value="{{ old('postcode') }}" required>
-				<input name="gemeente" class="input" id="city" value="{{ old('gemeente') }}" required>
+				<input name="postcode" class="input" id="postcode" value="{{ old('postcode') }}" required>
+				<input name="city" class="input" id="city" value="{{ old('city') }}" required>
 			</section>
 			<section class="form-group">
 				@if ($errors->has('postcode'))
 					<p class="error">{{ $errors->first('postcode') }}</p>
 				@endif
-				@if ($errors->has('gemeente'))
-					<p class="error">{{ $errors->first('gemeente') }}</p>
+				@if ($errors->has('city'))
+					<p class="error">{{ $errors->first('city') }}</p>
 				@endif
 			</section>
 			<section class="form-group">

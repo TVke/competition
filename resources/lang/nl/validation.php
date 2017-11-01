@@ -140,6 +140,7 @@ return [
 		'password'              => 'wachtwoord',
 		'password_confirmation' => 'wachtwoordbevestiging',
 		'phone'                 => 'telefoonnummer',
+		'postcode'              => 'postcode',
 		'second'                => 'seconde',
 		'sex'                   => 'geslacht',
 		'size'                  => 'grootte',

@@ -68,12 +68,12 @@ class SecurityController extends Controller
 	function add_player(Request $request){
 		// check player info
 		$request->validate([
-			'voornaam' => 'required|string|min:2|max:255',
-			'achternaam' => 'required|string|min:2|max:255',
+			'first_name' => 'required|string|min:2|max:255',
+			'last_name' => 'required|string|min:2|max:255',
 			'email' => 'required|email|min:5|max:255',
-			'adres' => 'required|string|min:2|max:255',
+			'address' => 'required|string|min:2|max:255',
 			'postcode' => 'required|alpha_num|min:4|max:6',
-			'gemeente' => 'required|string|min:2|max:255',
+			'city' => 'required|string|min:2|max:255',
 		]);
 
 		$extraToken = $request->et;
@@ -106,12 +106,12 @@ class SecurityController extends Controller
 
 		// update player info
 		$currentPlayer->update([
-			'surname' => $request->achternaam,
-			'first_name' => $request->voornaam,
+			'first_name' => $request->first_name,
+			'last_name' => $request->last_name,
 			'email' => $request->email,
-			'adres' => $request->adres,
-			'postalcode' => $request->postcode,
-			'city' => $request->gemeente,
+			'address' => $request->address,
+			'postcode' => $request->postcode,
+			'city' => $request->city,
 			'time' => $request->time,
 			'possible_dis' => $possible_dis
 		]);

@@ -15,11 +15,11 @@ class CreatePlayersTable extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('surname')->nullable()->default(null);
+            $table->string('last_name')->nullable()->default(null);
             $table->string('first_name')->nullable()->default(null);
             $table->string('email')->nullable()->default(null);
-            $table->mediumText('adres')->nullable()->default(null);
-            $table->string('postalcode')->nullable()->default(null);
+            $table->mediumText('address')->nullable()->default(null);
+            $table->string('postcode')->nullable()->default(null);
             $table->string('city')->nullable()->default(null);
             $table->ipAddress('ip');
             $table->decimal('start',15,4)->nullable()->default(null);

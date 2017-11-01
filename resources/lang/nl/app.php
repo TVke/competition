@@ -47,11 +47,11 @@ return [
 	'win-action-message' => 'Vul je gegevens in en maak kans op een iPhone X!',
 
 	// player form
-	'first-name-label' => 'voornaam',
-	'surname-label' => 'achternaam',
-	'email-label' => 'email',
-	'adres-label' => 'straat + huisnummer',
-	'postalcode-label' => 'postcode',
+	'first_name-label' => 'voornaam',
+	'last_name-label' => 'achternaam',
+	'email-label' => 'e-mailadres',
+	'address-label' => 'straat + huisnummer',
+	'postcode-label' => 'postcode',
 	'city-label' => 'gemeente / stad',
 	'submit-button' => 'neem deel',
 
