@@ -109,8 +109,8 @@ class SecurityController extends Controller
 
 		// update player info
 		$currentPlayer->update([
-			'first_name' => $request->first_name,
 			'last_name' => $request->last_name,
+			'first_name' => $request->first_name,
 			'email' => $request->email,
 			'address' => $request->address,
 			'postcode' => $request->postcode,

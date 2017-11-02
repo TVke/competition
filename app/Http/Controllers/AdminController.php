@@ -21,7 +21,17 @@ class AdminController extends Controller
 
     function periods(Request $request){
 	    $request->validate([
-		    'friend_email' => 'required|email|unique:players|unique:players,email|min:5|max:255',
+		    'start-1' => 'required|date',
+		    'end-1' => 'required|date',
+
+		    'start-2' => 'required|date',
+		    'end-2' => 'required|date',
+
+		    'start-3' => 'required|date',
+		    'end-3' => 'required|date',
+
+		    'start-4' => 'required|date',
+		    'end-4' => 'required|date',
 	    ]);
     	return "update periodes";
     }

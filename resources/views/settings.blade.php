@@ -18,11 +18,11 @@
 		<table class="table">
 			<thead class="table-head">
 			<tr>
-				<th>{{ __('app.table-first-name') }}</th>
-				<th>{{ __('app.table-surname') }}</th>
+				<th>{{ __('app.table-first_name') }}</th>
+				<th>{{ __('app.table-last_name') }}</th>
 				<th>{{ __('app.table-email') }}</th>
-				<th>{{ __('app.table-adres') }}</th>
-				<th>{{ __('app.table-postalcode') }}</th>
+				<th>{{ __('app.table-address') }}</th>
+				<th>{{ __('app.table-postcode') }}</th>
 				<th>{{ __('app.table-city') }}</th>
 				<th>{{ __('app.table-ip') }}</th>
 				<th>{{ __('app.table-time') }}</th>
@@ -38,10 +38,10 @@
 					<tr>
 				@endif
 						<td>{{ $player->first_name }}</td>
-						<td>{{ $player->surname }}</td>
+						<td>{{ $player->last_name }}</td>
 						<td>{{ $player->email }}</td>
-						<td>{{ $player->adres }}</td>
-						<td>{{ $player->postalcode }}</td>
+						<td>{{ $player->address }}</td>
+						<td>{{ $player->postcode }}</td>
 						<td>{{ $player->city }}</td>
 						<td>{{ $player->ip }}</td>
 						<td>{{ $player->time/10 }}</td>
@@ -55,6 +55,7 @@
 					@endforeach
 			</tbody>
 		</table>
+
 		{{ $players->links() }}
 	@else
 		<h2 class="heading-3 var-center">{{ __('app.empty-table') }}</h2>

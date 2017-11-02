@@ -37,9 +37,19 @@ class GameController extends Controller
 
 
 	function friend_invite(Request $request){
+//		return $request;
 		$request->validate([
 			'friend_email' => 'required|email|unique:players|unique:players,email|min:5|max:255',
 		]);
 
+		if(Cookie::get('game_player')){
+			$currentPlayer = Player::where('safety_token',Cookie::get('game_player'))->first();
+			$token = Hash::make($currentPlayer->email.$request->friend_email);
+			$currentPlayer->update([
+				'friend_token' => $token,
+				'friend_email' => $request->friend_email,
+			]);
+		}
+		return "added friend";
 	}
 }

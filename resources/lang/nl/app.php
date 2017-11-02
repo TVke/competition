@@ -70,11 +70,11 @@ return [
 
 	// admin page
 	'settings-title' => 'Wedstrijd Instellingen',
-	'table-first-name' => 'voornaam',
-	'table-surname' => 'achternaam',
+	'table-first_name' => 'voornaam',
+	'table-last_name' => 'achternaam',
 	'table-email' => 'email',
-	'table-adres' => 'adres',
-	'table-postalcode' => 'postcode',
+	'table-address' => 'adres',
+	'table-postcode' => 'postcode',
 	'table-city' => 'gemeente',
 	'table-ip' => 'ip',
 	'table-time' => 'tijd',
