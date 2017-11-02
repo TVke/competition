@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Period;
 use App\Player;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 
 class SecurityController extends Controller
@@ -33,11 +36,11 @@ class SecurityController extends Controller
 		$newToken = Hash::make($request->input(['_token']).$request->getClientIp().$request->ti);
 
 		// finding playing player
-		if(Player::where([['safety_token',$extraToken],['surname',null]])->count() === 1){
-			$currentPlayer = Player::where([['safety_token',$extraToken],['surname',null]])->first();
+		if(Player::where([['safety_token',$extraToken],['last_name',null]])->count() === 1){
+			$currentPlayer = Player::where([['safety_token',$extraToken],['last_name',null]])->first();
 		}
-		elseif(Player::where([['ip',$request->getClientIp()],['surname',null]])->count() === 1){
-			$currentPlayer = Player::where([['ip',$request->getClientIp()],['surname',null]])->first();
+		elseif(Player::where([['ip',$request->getClientIp()],['last_name',null]])->count() === 1){
+			$currentPlayer = Player::where([['ip',$request->getClientIp()],['last_name',null]])->first();
 		}
 		else{
 			$newPlayer = new Player();
@@ -70,7 +73,7 @@ class SecurityController extends Controller
 		$request->validate([
 			'first_name' => 'required|string|min:2|max:255',
 			'last_name' => 'required|string|min:2|max:255',
-			'email' => 'required|email|min:5|max:255',
+			'email' => 'required|unique:players|email|min:5|max:255',
 			'address' => 'required|string|min:2|max:255',
 			'postcode' => 'required|alpha_num|min:4|max:6',
 			'city' => 'required|string|min:2|max:255',
@@ -79,11 +82,11 @@ class SecurityController extends Controller
 		$extraToken = $request->et;
 
 		// check if player exists
-		if(Player::where([['safety_token',$extraToken],['surname',null]])->count() === 1){
-			$currentPlayer = Player::where([['safety_token',$extraToken],['surname',null]])->first();
+		if(Player::where([['safety_token',$extraToken],['last_name',null]])->count() === 1){
+			$currentPlayer = Player::where([['safety_token',$extraToken],['last_name',null]])->first();
 		}
-		elseif(Player::where([['ip',$request->getClientIp()],['surname',null]])->count() === 1){
-			$currentPlayer = Player::where([['ip',$request->getClientIp()],['surname',null]])->first();
+		elseif(Player::where([['ip',$request->getClientIp()],['last_name',null]])->count() === 1){
+			$currentPlayer = Player::where([['ip',$request->getClientIp()],['last_name',null]])->first();
 		}
 		else{ // no loss of data
 			$currentPlayer = new Player();
@@ -117,16 +120,30 @@ class SecurityController extends Controller
 		]);
 
 		$serverTime = round($currentPlayer->end - $currentPlayer->start,1);
-//		$networkErrorInSeconds = 5;
+		$networkErrorInSeconds = 5;
+
+		// player hasn't played the game yet
+		if($currentPlayer->start === null && $currentPlayer->end === null){
+			return redirect(route('play'))->with("status","not_played");
+		}
 
 		// something wrong (possible not users fault) => something wrong, retry
 		if($currentPlayer->start === null ||
 			$currentPlayer->end === null ||
-			$serverTime < ($request->time/10) //||
-//			($serverTime >= (($request->time/10)+$networkErrorInSeconds))  // to check in the admin the general network error
+			$serverTime < ($request->time/10) ||
+			($serverTime >= (($request->time/10)+$networkErrorInSeconds))  // to check in the admin the general network error
 		){
 			return redirect(route('play'))->with("status","retry");
 		}
+
+		// set player cookie
+		$minutesTillEndOfPeriod = Carbon::now()->diffInMinutes(Period::currentPeriode()->end);
+		$tokenToRemember = Hash::make($request->input(['_token']).$request->getClientIp().$currentPlayer->time);
+		if($currentPlayer->safety_token){
+			$tokenToRemember = $currentPlayer->safety_token;
+		}
+		Cookie::queue('game_player', $tokenToRemember, $minutesTillEndOfPeriod);
+
 		// outcome all ok -> friend invite
 		return redirect(route('play'))->with("status","ok");
 	}

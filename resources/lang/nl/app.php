@@ -57,12 +57,16 @@ return [
 
 	// after submition
 	'valid-title' => 'Gefeliciteerd, Wil je een extra kans?',
+	'no_double-title' => 'Je speelde al, een extra kans?',
 	'friend-invite-info' => 'Als je vriend(in) heeft gespeeld krijg je een mail waardoor je een extra kans krijgt',
 	'friend-invite-label' => 'nodig een vriend uit',
 	'friend-invite-button' => 'Nodig uit',
 
-	'retry-info' => 'We hebben niet alles correct ontvangen, dus krijg je een extra kans',
+	'retry-info' => 'We hebben niet alles correct ontvangen, je een extra kans.',
 	'retry-button' => 'Speel nog eens',
+
+	'not_played-info' => 'Je hebt het spel nog niet gespeeld.',
+	'not_played-button' => 'Speel nu het spel',
 
 	// admin page
 	'settings-title' => 'Wedstrijd Instellingen',

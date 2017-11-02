@@ -126,6 +126,10 @@ header{
 		}
 	}
 
+	&.var-status{
+		width: 120px;
+	}
+
 	&.var-footer{
 		background: none;
 		border: none;
@@ -271,7 +275,7 @@ time{
 			text-align: center;
 			color: $neutral-10;
 			font-size: 1.5em;
-			padding: 15px 0;
+			padding: 15px;
 			z-index: 1;
 			backdrop-filter: blur(10px);
 
@@ -387,25 +391,31 @@ time{
 		.label{
 			display: block;
 			width: calc(50% - 5px);
-
-			&:first-child{
-				margin-right: 10px;
-			}
 		}
 
 		.input{
 			display: block;
 			flex: 1;
+		}
 
-			&:first-child{
-				margin-right: 10px;
-			}
+		*:nth-child(2){
+			margin-left: 10px;
 		}
 	}
 
 	.error{
 		color: $band-negative-validation;
 	}
+
+	p.error{
+		flex: 1;
+
+		&.var-right{
+			text-align: right;
+		}
+	}
+
+
 }
 
 // settings

@@ -6,6 +6,7 @@ use App\Period;
 use App\Player;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -18,20 +19,16 @@ class GameController extends Controller
 
     function home(){
 	    $winners = Period::whereNotNull('winner')->with('winners')->orderBy('id')->get();
-	    $current_periode = 1;
-	    for($i=1,$ilen=count(Period::all());$i<=$ilen;++$i){
-	    	$periode = Period::where('id',$i)->first();
-		    if(Carbon::now()->between($periode->start,$periode->end)){
-			    $current_periode = $periode->id;
-			    break;
-		    }
-	    }
-	    $end_date = Period::where('id',$current_periode)->first()->end;
+	    $end_date = Period::currentPeriode()->end;
     	return view('home',compact(['winners','end_date']));
     }
 	function play(){
     	$ip = request()->getClientIp();
-		return view('game',compact('ip'));
+		$cookie = false;
+		if(Cookie::get('game_player')){
+			$cookie = Player::where('safety_token',Cookie::get('game_player'))->first();
+		}
+		return view('game',compact(['ip','cookie']));
 	}
 	function rules(){
 		$periodes = Period::all();
@@ -40,6 +37,9 @@ class GameController extends Controller
 
 
 	function friend_invite(Request $request){
-		return "friend mail";
+		$request->validate([
+			'friend_email' => 'required|email|unique:players|unique:players,email|min:5|max:255',
+		]);
+
 	}
 }

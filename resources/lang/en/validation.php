@@ -84,7 +84,7 @@ return [
     ],
     'string'               => 'The :attribute must be a string.',
     'timezone'             => 'The :attribute must be a valid zone.',
-    'unique'               => 'The :attribute has already been taken.',
+    'unique'               => 'The :attribute is already used.',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
 
@@ -116,6 +116,12 @@ return [
     |
     */
 
-    'attributes' => [],
+	'attributes'           => [
+		'email'                 => 'email address',
+		'first_name'            => 'first name',
+		'friend_email'          => 'email address',
+		'last_name'             => 'last name',
+		'password_confirmation' => 'password confirmation',
+	],
 
 ];

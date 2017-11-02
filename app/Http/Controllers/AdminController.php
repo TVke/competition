@@ -19,7 +19,10 @@ class AdminController extends Controller
 	    return view('settings',compact(['players','periods']));
     }
 
-    function periods(){
+    function periods(Request $request){
+	    $request->validate([
+		    'friend_email' => 'required|email|unique:players|unique:players,email|min:5|max:255',
+	    ]);
     	return "update periodes";
     }
 }

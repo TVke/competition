@@ -117,6 +117,8 @@ header {
     padding: 7px 13px; }
     .button.var-submit.var-full {
       width: 100%; }
+  .button.var-status {
+    width: 120px; }
   .button.var-footer {
     background: none;
     border: none;
@@ -218,7 +220,7 @@ time {
       text-align: center;
       color: black;
       font-size: 1.5em;
-      padding: 15px 0;
+      padding: 15px;
       z-index: 1;
       -webkit-backdrop-filter: blur(10px);
               backdrop-filter: blur(10px); }
@@ -314,17 +316,21 @@ time {
     .form .form-group .label {
       display: block;
       width: calc(50% - 5px); }
-      .form .form-group .label:first-child {
-        margin-right: 10px; }
     .form .form-group .input {
       display: block;
       -webkit-box-flex: 1;
           -ms-flex: 1;
               flex: 1; }
-      .form .form-group .input:first-child {
-        margin-right: 10px; }
+    .form .form-group *:nth-child(2) {
+      margin-left: 10px; }
   .form .error {
     color: #df0000; }
+  .form p.error {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1; }
+    .form p.error.var-right {
+      text-align: right; }
 
 .table {
   margin: 20px;
