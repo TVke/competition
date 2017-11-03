@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Laravel\Socialite\Facades\Socialite;
 
 class GameController extends Controller
@@ -51,5 +52,14 @@ class GameController extends Controller
 			]);
 		}
 		return "added friend";
+	}
+
+	function mail(){
+		Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
+		{
+			$message->subject('Mailgun and Laravel are awesome!');
+			$message->from('thomas.verhelst@studnet.kdg.be', 'Wedstrijd.local');
+			$message->to('tvke91@gmail.com');
+		});
 	}
 }

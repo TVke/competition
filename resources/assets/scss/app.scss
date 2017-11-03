@@ -142,6 +142,33 @@ header{
 		}
 	}
 
+	&.var-icon{
+		width: 90px;
+
+		img{
+			height: 20px;
+			margin-right: 5px;
+			float: left;
+		}
+	}
+
+	&.var-right{
+		display: block;
+		float: right;
+		margin: 20px;
+	}
+
+	&.var-excel:hover{
+		background: lighten(#207245,50%);
+		color: darken(#207245,10%);
+	}
+
+	&.var-delete{
+		background: $brand-primary;
+		color: $brand-primary-contrast;
+		margin: 5px auto;
+	}
+
 	&:hover{
 		background: $neutral-10;
 		color: $neutral-0;
@@ -415,15 +442,19 @@ time{
 		}
 	}
 
-
+	&.var-settings{
+		min-width: 250px;
+		max-width: 300px;
+	}
 }
 
 // settings
 
 .table{
-	margin: 20px;
+	margin: 0 auto;
+	padding: 20px;
 	border-spacing: 0;
-	width: calc(100% - 40px);
+	clear: both;
 
 	.table-head, .table-body{
 
@@ -454,6 +485,7 @@ time{
 	margin: 20px;
 	list-style: none;
 	text-align: center;
+	clear: both;
 
 	li{
 		margin: 5px;

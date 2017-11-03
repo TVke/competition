@@ -74,12 +74,13 @@ return [
 	'table-last_name' => 'achternaam',
 	'table-email' => 'email',
 	'table-address' => 'adres',
-	'table-postcode' => 'postcode',
-	'table-city' => 'gemeente',
-	'table-ip' => 'ip',
+	'table-city' => 'plaats',
 	'table-time' => 'tijd',
-	'table-server-time' => 'servertijd',
+	'table-server-time' => 'server',
 	'table-friend' => 'vriend',
+	'table-delete-button' => 'verwijder',
+
+	'excel-download' => 'download',
 
 	'empty-table' => 'Er hebben nog geen mensen meegespeeld.',
 	'period-label' => 'Periode',

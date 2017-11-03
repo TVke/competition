@@ -122,6 +122,14 @@ return [
 		'friend_email'          => 'email address',
 		'last_name'             => 'last name',
 		'password_confirmation' => 'password confirmation',
+		'start-1'               => 'start of period 1',
+		'end-1'                 => 'end of period 1',
+		'start-2'               => 'start of period 2',
+		'end-2'                 => 'end of period 2',
+		'start-3'               => 'start of period 3',
+		'end-3'                 => 'end of period 3',
+		'start-4'               => 'start of period 4',
+		'end-4'                 => 'end of period 4',
 	],
 
 ];

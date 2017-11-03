@@ -150,6 +150,14 @@ return [
 		'title'                 => 'titel',
 		'username'              => 'gebruikersnaam',
 		'year'                  => 'jaar',
+		'start-1'               => 'start van periode 1',
+		'end-1'                 => 'einde van periode 1',
+		'start-2'               => 'start van periode 2',
+		'end-2'                 => 'einde van periode 2',
+		'start-3'               => 'start van periode 3',
+		'end-3'                 => 'einde van periode 3',
+		'start-4'               => 'start van periode 4',
+		'end-4'                 => 'einde van periode 4',
 	],
 
 ];

@@ -28,7 +28,12 @@ Route::post('/connect/facebook/player','SecurityController@fb');
 
 Route::patch('/invite/friend','GameController@friend_invite')->name('invite');
 
+Route::get('/mail','GameController@mail')->name('mail');
+
 Auth::routes();
 
 Route::get('/settings', 'AdminController@index')->name('admin');
 Route::patch('/update/periods','AdminController@periods')->name('update_periods');
+Route::delete('/delete/player/{player}','AdminController@player')->name('delete_player');
+
+Route::get('/excel','AdminController@playersToExcel')->name('excel');

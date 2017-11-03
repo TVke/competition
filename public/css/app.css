@@ -127,6 +127,23 @@ header {
     border-radius: 0; }
     .button.var-footer:hover {
       text-decoration: underline; }
+  .button.var-icon {
+    width: 90px; }
+    .button.var-icon img {
+      height: 20px;
+      margin-right: 5px;
+      float: left; }
+  .button.var-right {
+    display: block;
+    float: right;
+    margin: 20px; }
+  .button.var-excel:hover {
+    background: #aae7c6;
+    color: #154a2d; }
+  .button.var-delete {
+    background: #df0000;
+    color: white;
+    margin: 5px auto; }
   .button:hover {
     background: black;
     color: white; }
@@ -331,11 +348,15 @@ time {
             flex: 1; }
     .form p.error.var-right {
       text-align: right; }
+  .form.var-settings {
+    min-width: 250px;
+    max-width: 300px; }
 
 .table {
-  margin: 20px;
+  margin: 0 auto;
+  padding: 20px;
   border-spacing: 0;
-  width: calc(100% - 40px); }
+  clear: both; }
   .table .table-head tr.var-possible-dis, .table .table-body tr.var-possible-dis {
     background: #df0000; }
   .table .table-head th, .table .table-head td, .table .table-body th, .table .table-body td {
@@ -357,7 +378,8 @@ time {
           justify-content: center;
   margin: 20px;
   list-style: none;
-  text-align: center; }
+  text-align: center;
+  clear: both; }
   .pagination li {
     margin: 5px; }
     .pagination li a, .pagination li span {
