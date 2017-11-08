@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Player;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,7 +24,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+	    Route::bind('player',function($id){
+		    return Player::where('id',$id)->firstOrFail();
+	    });
+	    Route::bind('token',function($friend_token){
+		    return Player::where('friend_token',$friend_token)->firstOrFail();
+	    });
 
         parent::boot();
 

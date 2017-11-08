@@ -23,12 +23,13 @@ Route::post('/start','SecurityController@start');
 Route::post('/end','SecurityController@end');
 Route::put('/add/player','SecurityController@add_player')->name('update_user');
 
-Route::post('/add/facebook/player','SecurityController@add_fb_player');
-Route::post('/connect/facebook/player','SecurityController@fb');
+//Route::post('/add/facebook/player','SecurityController@add_fb_player');
+//Route::post('/connect/facebook/player','SecurityController@fb');
 
-Route::patch('/invite/friend','GameController@friend_invite')->name('invite');
+Route::patch('/invite/friend/{player}','SecurityController@friend_invite')->name('friend_invite');
+Route::get('/friend/{token}','SecurityController@friend_check')->name('friend_accepted');
 
-Route::get('/mail','GameController@mail')->name('mail');
+Route::put('/second/play','SecurityController@second_play')->name('second_play');
 
 Auth::routes();
 

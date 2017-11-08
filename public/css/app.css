@@ -117,6 +117,9 @@ header {
     padding: 7px 13px; }
     .button.var-submit.var-full {
       width: 100%; }
+    .button.var-submit.var-center {
+      margin: 20px auto;
+      width: 120px; }
   .button.var-status {
     width: 120px; }
   .button.var-footer {

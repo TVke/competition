@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\GrantNewChange;
+use App\Mail\inviteFriend;
 use App\Period;
 use App\Player;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class SecurityController extends Controller
 {
@@ -99,8 +102,7 @@ class SecurityController extends Controller
 		if($currentPlayer->possible_dis === 1 ||
 			$currentPlayer->safety_token !== $extraToken ||
 			!Hash::check($request->input(['_token']).$request->getClientIp().$request->time,$extraToken)
-		)
-		{
+		){
 			$possible_dis = 1;
 		}
 		else{
@@ -109,23 +111,23 @@ class SecurityController extends Controller
 
 		// update player info
 		$currentPlayer->update([
+			'first_name' => ucfirst($request->first_name),
 			'last_name' => $request->last_name,
-			'first_name' => $request->first_name,
 			'email' => $request->email,
 			'address' => $request->address,
 			'postcode' => $request->postcode,
 			'city' => $request->city,
 			'time' => $request->time,
-			'possible_dis' => $possible_dis
+			'possible_dis' => $possible_dis,
 		]);
+
+		if(Player::where([['friend_email',$request->email],['mail_opened',1]])->count() > 0){
+			$friendFrom = Player::where([['friend_email',$request->email],['mail_opened',1]])->first();
+			Mail::to($friendFrom->email)->send(new GrantNewChange());
+		}
 
 		$serverTime = round($currentPlayer->end - $currentPlayer->start,1);
 		$networkErrorInSeconds = 5;
-
-		// player hasn't played the game yet
-		if($currentPlayer->start === null && $currentPlayer->end === null){
-			return redirect(route('play'))->with("status","not_played");
-		}
 
 		// something wrong (possible not users fault) => something wrong, retry
 		if($currentPlayer->start === null ||
@@ -133,7 +135,7 @@ class SecurityController extends Controller
 			$serverTime < ($request->time/10) ||
 			($serverTime >= (($request->time/10)+$networkErrorInSeconds))  // to check in the admin the general network error
 		){
-			return redirect(route('play'))->with("status","retry");
+			return redirect(route('play'))->with("retry",'retry');
 		}
 
 		// set player cookie
@@ -145,28 +147,66 @@ class SecurityController extends Controller
 		Cookie::queue('game_player', $tokenToRemember, $minutesTillEndOfPeriod);
 
 		// outcome all ok -> friend invite
-		return redirect(route('play'))->with("status","ok");
+		$player = Player::where("id",$currentPlayer->id)->first();
+		return redirect(route('play'))->with("ok",$player->id);
 	}
 
+	function second_play(Request $request){
 
-//	function add_fb_player(){
-//		$user = Socialite::with('facebook')->user();
-//		// OAuth Two Providers
-////		$token = $user->token;
-//
-//		// OAuth One Providers
-//		$token = $user->token;
-//		$tokenSecret = $user->tokenSecret;
-//
-//		// All Providers
-//		$user->getId();
-//		$user->getNickname();
-//		$user->getName();
-//		$user->getEmail();
-//		$user->getAvatar();
-//	}
-//
-//	function fb(){
-//		return Socialite::with('facebook')->redirect();
-//	}
+		if(Cookie::get('game_player')){ // checks if cookie is set
+			if(Player::where('safety_token',Cookie::get('game_player'))->count() > 0){ // checks if player from cookie exists
+
+				$cookie = Player::where('safety_token',Cookie::get('game_player'))->first();
+
+				if($cookie->mail_opened === 1 && (Player::where('email',$cookie->friend_email)->count() > 0)){
+					session()->forget('newChange');
+					$currentPlayer = new Player();
+					$currentPlayer->ip = $request->getClientIp();
+					$currentPlayer->first_name = $cookie->first_name;
+					$currentPlayer->last_name = $cookie->last_name;
+					$currentPlayer->email = $cookie->email;
+					$currentPlayer->address = $cookie->address;
+					$currentPlayer->postcode = $cookie->postcode;
+					$currentPlayer->city = $cookie->city;
+					$currentPlayer->time = $request->time;
+					$currentPlayer->no_more = 1;
+					$currentPlayer->save();
+
+					$cookie->update(['no_more'=>1]);
+					session()->put(['secondPlayed'=>'secondPlayed']);
+				}
+			}
+		}
+
+		return redirect(route('play'));
+	}
+
+	function friend_invite(Request $request,Player $player){
+		$request->validate([
+			'friend_email' => 'required|email|unique:players|unique:players,email|min:5|max:255',
+		]);
+
+		$currentPlayer = $player;
+		if(Cookie::get('game_player')){
+			$currentPlayer = Player::where('safety_token', Cookie::get('game_player'))->first();
+			if($currentPlayer->id !== $player->id){
+				return redirect(route('play'))->with("retry",'retry');
+			}
+		}
+		$token = md5($currentPlayer->email.$request->friend_email.$currentPlayer->safety_token);
+		$currentPlayer->update([
+			'friend_token' => $token,
+			'friend_email' => $request->friend_email,
+		]);
+
+		Mail::to($request->friend_email)->send(new inviteFriend($currentPlayer->id,$token));
+		return redirect(route('play'))->with("friend_added",$request->friend_email);
+	}
+
+	function friend_check(Player $friend){
+		if(md5($friend->email.$friend->friend_email.$friend->safety_token) === $friend->friend_token){
+			$friend->update(['mail_opened'=>1]);
+		}
+		return redirect(route('home'));
+	}
 }

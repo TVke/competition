@@ -58,15 +58,28 @@ return [
 	// after submition
 	'valid-title' => 'Gefeliciteerd, Wil je een extra kans?',
 	'no_double-title' => 'Je speelde al, een extra kans?',
-	'friend-invite-info' => 'Als je vriend(in) heeft gespeeld krijg je een mail waardoor je een extra kans krijgt',
+	'friend-invite-info' => 'Als je vriend(in) heeft gespeeld krijg je een mail waardoor je een extra kans krijgt.',
 	'friend-invite-label' => 'nodig een vriend uit',
 	'friend-invite-button' => 'Nodig uit',
 
-	'retry-info' => 'We hebben niet alles correct ontvangen, je een extra kans.',
+	'friend-added-title' => 'Je vriend(in) krijgt een uitnodiging van jou.',
+	'friend-added-info' => 'Je kan nog een keer spelen als deze vriend(in) het spel gespeeld heeft.',
+
+	'retry-info' => 'Er liep iets mis, je krijgt een extra kans.',
 	'retry-button' => 'Speel nog eens',
 
-	'not_played-info' => 'Je hebt het spel nog niet gespeeld.',
-	'not_played-button' => 'Speel nu het spel',
+	// friend-invite mails
+	'friend-mail-title'=> 'Win een iPhone X dankzij :friend!',
+	'friend-mail-explanation' => ':friend heeft je uitgenodigd om samen met hem kans te maken op een iPhone X.',
+	'friend-mail-action' => 'Speel nu',
+	'friend-mail-subject' => ':friend geeft je de kans een iPhone X te winnen!',
+
+	'new-change-mail-title'=> 'Je vriend(in) heeft deelgenomen',
+	'new-change-mail-explanation' => 'Je krijgt een extra kans om een iPhone X te winnen',
+	'new-change-mail-action' => 'Speel nu',
+	'new-change-mail-subject' => 'Een extra kans om een iPhone X te winnen!',
+
+	'second-play-info' => 'We hebben je gegevens al dus je hoeft niets meer in te vullen.',
 
 	// admin page
 	'settings-title' => 'Wedstrijd Instellingen',

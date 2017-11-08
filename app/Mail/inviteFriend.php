@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Player;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,14 +12,18 @@ class inviteFriend extends Mailable
 {
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+	public $friendId,$token;
+
+	/**
+	 * Create a new message instance.
+	 *
+	 * @param $friendId
+	 * @param $token
+	 */
+    public function __construct($friendId,$token)
     {
-        //
+        $this->friendId = $friendId;
+	    $this->token = $token;
     }
 
     /**
@@ -28,6 +33,14 @@ class inviteFriend extends Mailable
      */
     public function build()
     {
-        return $this->view('friendInvite');
+    	$friend = Player::where('id',$this->friendId)->first();
+	    $address = $friend->email;
+	    $name = $friend->first_name." ".$friend->last_name;
+	    $subject = __('app.friend-mail-subject',['friend'=>$name]);
+	    $token = $this->token;
+
+	    return $this->view('mail.friendInvite',compact(['name','token']))
+		    ->from($address, $name)
+		    ->subject($subject);
     }
 }

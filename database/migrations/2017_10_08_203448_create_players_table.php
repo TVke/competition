@@ -30,6 +30,8 @@ class CreatePlayersTable extends Migration
             $table->string('safety_token')->default("");
             $table->string('friend_token')->nullable()->default(null);
             $table->string('friend_email')->nullable()->default(null);
+	        $table->boolean('mail_opened')->default(0);
+	        $table->boolean('no_more')->default(0);
             $table->timestamps();
         });
     }

@@ -124,6 +124,11 @@ header{
 		&.var-full{
 			width: 100%;
 		}
+
+		&.var-center{
+			margin: 20px auto;
+			width: 120px;
+		}
 	}
 
 	&.var-status{
