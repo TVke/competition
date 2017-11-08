@@ -21,8 +21,6 @@ class CreateUsersTable extends Migration
             $table->boolean('sendWinner')->default(0);
             $table->rememberToken();
             $table->timestamps();
-
-	        $table->unique('email', 'unique_email');
         });
     }
 
