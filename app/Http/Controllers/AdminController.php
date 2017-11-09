@@ -71,7 +71,7 @@ class AdminController extends Controller
     function playersToExcel(){
     	Excel::create('Deelnemers', function($excel) {
 		    $excel->sheet('Deelnemers', function($sheet) {
-			    $sheet->fromModel(Player::all());
+			    $sheet->fromModel(Player::qualified()->latest()->get());
 		    });
 
 	    })->download('xlsx');
