@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Period;
 use App\Player;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -21,6 +22,7 @@ class AdminController extends Controller
     }
 
     function periods(Request $request){
+//    	return $request;
 	    $request->validate([
 		    'start-1' => 'required|date_format:d-m-Y|before:end-1',
 		    'end-1' => 'required|date_format:d-m-Y|after:start-1|before_or_equal:start-2',
@@ -39,21 +41,22 @@ class AdminController extends Controller
 	    $third = Period::where('id',3)->first();
 	    $fourth = Period::where('id',4)->first();
 
+
 	    $first->update([
-		    'start' => $request->input(['start-1']),
-		    'end' => $request->input(['end-1']),
+		    'start' => Carbon::parse($request->input(['start-1'])),
+		    'end' => Carbon::parse($request->input(['end-1'])),
 	    ]);
 	    $second->update([
-		    'start' => $request->input(['start-2']),
-		    'end' => $request->input(['end-2']),
+		    'start' => Carbon::parse($request->input(['start-2'])),
+		    'end' => Carbon::parse($request->input(['end-2'])),
 	    ]);
 	    $third->update([
-		    'start' => $request->input(['start-3']),
-		    'end' => $request->input(['end-3']),
+		    'start' => Carbon::parse($request->input(['start-3'])),
+		    'end' => Carbon::parse($request->input(['end-3'])),
 	    ]);
 	    $fourth->update([
-		    'start' => $request->input(['start-4']),
-		    'end' => $request->input(['end-4']),
+		    'start' => Carbon::parse($request->input(['start-4'])),
+		    'end' => Carbon::parse($request->input(['end-4'])),
 	    ]);
     	return redirect(route('admin'));
     }

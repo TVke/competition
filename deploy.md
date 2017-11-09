@@ -6,5 +6,8 @@ get git project
 install laravel dependencies
 >composer install
 
+setup .env file
+>php artisan key:generate
+
 setup database
->php artisan migrate:install --seed
+>php artisan migrate --seed
